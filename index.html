@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- -- Hero Image Preload (LCP optimization) -->
+<!-- SEKARANG: preload ke Unsplash (fallback aktif di CSS) sampai foto asli tersedia -->
+<!-- TODO ASET: Saat /images/hero.webp sudah di-upload, ganti href + imagesrcset di bawah ini -->
+<link rel="preload" as="image"
+  href="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp"
+  imagesizes="100vw"
+  fetchpriority="high">
+<title>Puncak Gateway - Gerbang Utama Wisata Puncak</title>
+
+<!-- -- SEO Meta -->
+<meta name="description" content="Platform wisata premium Puncak Bogor. Sewa villa dengan kolam renang private, paket ATV, glamping eksklusif. Booking mudah via WhatsApp. 300+ pilihan mulai Rp 750.000/malam.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puncakgateway.com/">
+
+<!-- -- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Puncak Gateway">
+<meta property="og:title" content="Puncak Gateway - Villa & Wisata Premium Puncak Bogor">
+<meta property="og:description" content="300+ villa, ATV, glamping eksklusif di Puncak Bogor. Booking mudah, harga terbaik, pelayanan profesional. Cek ketersediaan sekarang!">
+<meta property="og:image" content="https://puncakgateway.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Puncak Gateway - Platform Wisata Premium Puncak Bogor">
+<meta property="og:url" content="https://puncakgateway.com/">
+<meta property="og:locale" content="id_ID">
+
+<!-- -- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Puncak Gateway - Villa & Wisata Premium Puncak Bogor">
+<meta name="twitter:description" content="300+ villa, ATV, glamping eksklusif di Puncak Bogor. Booking mudah via WhatsApp.">
+<meta name="twitter:image" content="https://puncakgateway.com/og-image.jpg">
+<!-- -- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#D4A843">
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Puncak Gateway">
+
+<!-- -- Preconnect: buka koneksi CDN lebih awal -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com">
+
+<!-- -- Boxicons: load async, tidak blocking render -->
+<link rel="preload" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></noscript>
+
+<!-- -- Google Fonts: load async, tidak blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+<!-- -- Font fallback: pastikan layout tidak shift saat font load -->
+<style>
+  /* System font stack sebagai fallback selama web font load */
+  body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .font-display, .hero-title, .section-title, .logo-main,
+  .stat-num, .promo-title, .cd-num, .pkg-name, .step-title,
+  .c-name, .atv-stat-num { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;overflow-x:hidden;transition:background .4s,color .4s}
+
+/* -- THEMES -- */
+[data-theme="dark"]{
+  /* Backgrounds — obsidian luxury */
+  --bg:#06060A;--bg2:#0D0D14;--bg3:#13131C;
+  --card:#0F0F18;--card2:#16161F;
+  /* Text */
+  --text:#F5F0E8;--muted:rgba(245,240,232,0.5);
+  /* Borders — more visible, more premium */
+  --border:rgba(201,168,76,0.22);--border2:rgba(201,168,76,0.42);
+  /* Glass */
+  --glass:rgba(13,13,20,0.82);
+  /* Skeleton shimmer */
+  --sk1:#16161F;--sk2:#1E1E2A;
+  /* Gold family — richer metallic */
+  --gold:#D4A843;--gold-light:#F0D898;--gold-dark:#8B6820;--gold-soft:#E8C05A;--gold-glow:rgba(212,168,67,0.25);
+  /* Burgundy accent (luxury touch) */
+  --accent:#8B2252;--accent-light:#B83070;--accent-bg:rgba(139,34,82,0.12);--accent-border:rgba(139,34,82,0.3);
+  /* Secondary — muted, tidak dominan */
+  --secondary:#3A5A42;--secondary-light:#527A5A;--secondary-border:rgba(58,90,66,0.3);--secondary-bg:rgba(58,90,66,0.1);
+  /* Shadow */
+  --shadow-card:0 4px 24px rgba(0,0,0,0.5),0 1px 0 rgba(212,168,67,0.08);
+  --shadow-hover:0 8px 40px rgba(0,0,0,0.7),0 0 0 1px rgba(212,168,67,0.15);
+}
+[data-theme="light"]{
+  /* Backgrounds — warm ivory, tidak flat putih */
+  --bg:#F8F4EE;--bg2:#EFE9DF;--bg3:#E6DDD1;
+  --card:#FFFDF9;--card2:#F4EFE6;
+  /* Text */
+  --text:#1A1410;--muted:#6B5D4F;
+  /* Borders — visible tapi tidak kasar */
+  --border:rgba(139,104,32,0.18);--border2:rgba(139,104,32,0.35);
+  /* Glass */
+  --glass:rgba(255,253,249,0.88);
+  /* Skeleton shimmer */
+  --sk1:#E6DDD1;--sk2:#F0E8DE;
+  /* Gold family — lebih dalam di light biar kontras terjaga */
+  --gold:#B8881C;--gold-light:#D4A843;--gold-dark:#7A5C10;--gold-soft:#C89830;--gold-glow:rgba(184,136,28,0.18);
+  /* Burgundy accent */
+  --accent:#7A1E48;--accent-light:#9E2860;--accent-bg:rgba(122,30,72,0.08);--accent-border:rgba(122,30,72,0.22);
+  /* Secondary */
+  --secondary:#2D4F35;--secondary-light:#426E4A;--secondary-border:rgba(45,79,53,0.25);--secondary-bg:rgba(45,79,53,0.08);
+  /* Shadow */
+  --shadow-card:0 2px 16px rgba(26,20,16,0.08),0 1px 0 rgba(184,136,28,0.06);
+  --shadow-hover:0 8px 32px rgba(26,20,16,0.14),0 0 0 1px rgba(184,136,28,0.12);
+}
+
+body{background:var(--bg);color:var(--text)}
+
+/* -- TYPOGRAPHY -- */
+.font-display{font-family:'Playfair Display',serif}
+.gold-text{
+  background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 25%,var(--gold-soft) 50%,var(--gold) 75%,var(--gold-dark) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+.muted{color:var(--muted)}
+
+/* -- GOLD ELEMENTS -- */
+.gold-line{height:1px;background:linear-gradient(to right,transparent,var(--gold) 30%,var(--gold-light) 50%,var(--gold) 70%,transparent)}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+/* -- BUTTONS -- */
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 30%,var(--gold-light) 50%,var(--gold) 70%,var(--gold-dark) 100%);
+  background-size:200% auto;color:#0A0804;font-weight:700;border:none;cursor:pointer;
+  transition:background-position .5s,transform .2s,box-shadow .2s;
+  font-family:'Inter',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;
+  box-shadow:0 4px 20px var(--gold-glow)
+}
+.btn-gold:hover{background-position:right center;transform:translateY(-2px);box-shadow:0 8px 32px var(--gold-glow),0 0 0 1px rgba(212,168,67,.3)}
+.btn-outline{
+  background:transparent;color:var(--gold);border:1px solid rgba(201,168,76,.35);
+  font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:none;
+  display:inline-flex;align-items:center;gap:.5rem;transition:background .2s,transform .2s
+}
+.btn-outline:hover{background:rgba(201,168,76,.1);transform:translateY(-2px)}
+
+/* -- GLASS -- */
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border)}
+
+/* -- SKELETON -- */
+.skeleton{background:linear-gradient(90deg,var(--sk1) 25%,var(--sk2) 50%,var(--sk1) 75%);background-size:200% 100%;animation:shimmer 1.8s infinite}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* -- REVEAL -- */
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.hero-visible{opacity:1;transform:translateY(0)}
+
+/* ======================================
+   NAVBAR
+====================================== */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 5%;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,box-shadow .4s
+}
+#navbar.scrolled{background:rgba(6,6,10,.97);box-shadow:0 4px 40px rgba(0,0,0,.7),0 1px 0 rgba(212,168,67,.12);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+[data-theme="light"] #navbar.scrolled{background:rgba(248,244,238,.97);box-shadow:0 4px 24px rgba(26,20,16,.1),0 1px 0 rgba(184,136,28,.1);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+
+.logo-wrap{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+.logo-main{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--gold);letter-spacing:.06em}
+.logo-sub{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.theme-btn{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--border2);
+  background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1.1rem;transition:background .2s
+}
+.theme-btn:hover{background:rgba(201,168,76,.1)}
+.nav-cta{padding:.55rem 1.25rem;border-radius:8px;font-size:.8rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);border-radius:2px;transition:.3s}
+
+/* Mobile menu */
+#mob-menu{
+  position:fixed;top:0;right:0;bottom:0;width:280px;z-index:99;
+  background:var(--card);border-left:1px solid var(--border);
+  padding:80px 2rem 2rem;
+  display:flex;flex-direction:column;gap:1.5rem;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)
+}
+#mob-menu.open{transform:translateX(0)}
+#mob-menu a{color:var(--muted);text-decoration:none;font-size:1rem;font-weight:500;transition:color .2s}
+#mob-menu a:hover{color:var(--gold)}
+#mob-overlay{position:fixed;inset:0;z-index:98;background:rgba(0,0,0,.6);display:none}
+#mob-overlay.show{display:block}
+
+/* ======================================
+   HERO
+====================================== */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:100px 5% 80px;position:relative;overflow:hidden
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  /* TODO: Ganti URL di bawah dengan /images/hero.webp setelah aset foto asli tersedia */
+  /* Format priority: AVIF -> WebP -> JPEG (browser pilih format terbaik yang didukung) */
+  background-image:
+    url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp');
+  background-image:
+    -webkit-image-set(
+      url('/images/hero.avif') type('image/avif'),
+      url('/images/hero.webp') type('image/webp'),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') type('image/jpeg')
+    );
+  background-image:
+    image-set(
+      url('/images/hero.avif') type('image/avif'),
+      url('/images/hero.webp') type('image/webp'),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') type('image/jpeg')
+    );
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(8,8,8,.35) 0%,rgba(8,8,8,.55) 50%,rgba(8,8,8,.97) 100%)
+}
+.hero-content{position:relative;z-index:2;max-width:820px;margin:0 auto}
+.hero-eyebrow{margin-bottom:1.5rem}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,6.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.25rem}
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.65);max-width:520px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem}
+.hero-btns .btn-gold{padding:.9rem 2.5rem;border-radius:12px;font-size:.95rem}
+.hero-btns .btn-outline{padding:.9rem 2rem;border-radius:12px;font-size:.9rem}
+
+/* Stats */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:560px;margin:0 auto}
+.stat-box{border-radius:16px;padding:1rem .75rem;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-lbl{font-size:.65rem;color:rgba(255,255,255,.5);letter-spacing:.06em;margin-top:2px}
+
+/* Scroll indicator */
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.3rem;animation:bounce 2s infinite;z-index:2}
+.scroll-hint span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.scroll-hint i{font-size:1.4rem;color:var(--gold)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ======================================
+   STICKY BOOKING BAR
+====================================== */
+#book-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:90;
+  padding:.75rem 1rem 1rem;
+  transform:translateY(100%);opacity:0;transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s;
+  pointer-events:none
+}
+#book-bar.visible{transform:translateY(0);opacity:1;pointer-events:all}
+
+.book-inner{
+  max-width:1000px;margin:0 auto;
+  border-radius:16px;padding:1rem 1.25rem;
+  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap
+}
+.book-tabs{display:flex;gap:.4rem}
+.book-tab{
+  padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:600;
+  border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif
+}
+.book-tab.active{background:var(--gold);color:#080808;border-color:var(--gold)}
+.book-tab:not(.active):hover{background:rgba(201,168,76,.1);color:var(--gold)}
+.book-sep{width:1px;height:32px;background:var(--border);flex-shrink:0}
+.book-input{
+  background:transparent;border:none;outline:none;font-size:.82rem;color:var(--text);
+  font-family:'Inter',sans-serif;flex:1;min-width:110px
+}
+.book-input::placeholder{color:var(--muted)}
+.book-btn{padding:.65rem 1.5rem;border-radius:10px;font-size:.82rem;white-space:nowrap}
+
+/* Mobile booking */
+.book-mob-collapsed{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-radius:16px}
+.book-mob-expanded{display:none;flex-direction:column;gap:.75rem;padding:1.25rem;border-radius:16px;margin-top:.5rem}
+.book-mob-expanded.show{display:flex}
+.book-field{
+  width:100%;background:transparent;border:1px solid var(--border);border-radius:10px;
+  padding:.7rem 1rem;font-size:.85rem;color:var(--text);font-family:'Inter',sans-serif;outline:none;
+  transition:border-color .2s
+}
+.book-field:focus{border-color:var(--gold)}
+
+/* ======================================
+   SECTIONS
+====================================== */
+section{padding:80px 5%}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.5rem);font-weight:700;line-height:1.2;margin-top:.5rem}
+.see-all{color:var(--gold);font-size:.875rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:.3rem;white-space:nowrap;border-bottom:1px solid transparent;transition:border-color .2s}
+.see-all:hover{border-color:var(--gold)}
+.s-bg1{background:var(--bg)}
+.s-bg2{background:var(--bg2)}
+
+/* ======================================
+   ACTIVITY GRID
+====================================== */
+.act-scroll{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.5rem;scrollbar-width:none}
+.act-scroll::-webkit-scrollbar{display:none}
+.act-card{
+  flex-shrink:0;width:140px;background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.5rem 1rem;text-align:center;cursor:pointer;
+  text-decoration:none;color:var(--text);
+  transition:transform .3s,box-shadow .3s,border-color .3s
+}
+.act-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.5);box-shadow:0 16px 40px rgba(201,168,76,.12)}
+.act-icon{font-size:2rem;display:block;margin-bottom:.6rem}
+.act-name{font-weight:600;font-size:.85rem;margin-bottom:.3rem}
+.act-count{font-size:.8rem;color:var(--gold)}
+
+/* ======================================
+   CARDS (Villa / Glamping)
+====================================== */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem}
+.c-card{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s;
+  box-shadow:var(--shadow-card)
+}
+.c-card:hover{transform:translateY(-8px);border-color:var(--border2);box-shadow:var(--shadow-hover)}
+.c-img-wrap{position:relative;overflow:hidden;height:200px}
+.c-img-wrap .skeleton{position:absolute;inset:0;z-index:0}
+.c-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .5s}
+.c-card:hover .c-img-wrap img{transform:scale(1.06)}
+.c-badge{position:absolute;top:12px;left:12px;z-index:2;font-size:.65rem;font-weight:700;padding:.25rem .7rem;border-radius:20px;background:rgba(8,8,8,.82);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.c-fav{position:absolute;top:12px;right:12px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(8,8,8,.72);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:color .2s}
+.c-fav:hover{color:#e74c3c}
+.c-body{padding:1.1rem}
+.c-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:.35rem}
+.c-loc{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.25rem;margin-bottom:.65rem}
+.c-meta{display:flex;gap:.9rem;font-size:.8rem;color:var(--muted);margin-bottom:.9rem}
+.c-foot{display:flex;align-items:center;justify-content:space-between}
+.c-price-lbl{font-size:.75rem;color:var(--muted)}
+.c-price{font-size:1rem;font-weight:700;color:var(--gold)}
+.c-price small{font-size:.75rem;color:var(--muted);font-weight:400}
+.c-btn{padding:.45rem 1rem;border-radius:8px;font-size:.8rem}
+
+/* ======================================
+   ATV SECTION
+====================================== */
+.atv-split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
+.atv-img{border-radius:20px;overflow:hidden;position:relative;height:420px}
+.atv-img .skeleton{position:absolute;inset:0}
+.atv-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.atv-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.7) 0%,transparent 60%)}
+.atv-stat{position:absolute;bottom:20px;left:20px;border-radius:14px;padding:.9rem 1.25rem}
+.atv-stat-num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.atv-stat-lbl{font-size:.75rem;color:var(--muted)}
+.feat-list{display:flex;flex-direction:column;gap:.9rem}
+.feat-item{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;transition:border-color .2s}
+.feat-item:hover{border-color:rgba(201,168,76,.4)}
+.feat-icon{font-size:1.6rem;flex-shrink:0}
+.feat-title{font-weight:600;font-size:.88rem;margin-bottom:.25rem}
+.feat-desc{font-size:.875rem;color:var(--muted);line-height:1.55}
+
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.25rem}
+.pkg{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.5rem;transition:transform .3s,border-color .3s,box-shadow .3s}
+.pkg:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.4);box-shadow:0 20px 50px rgba(201,168,76,.1)}
+.pkg.featured{background:linear-gradient(135deg,rgba(201,168,76,.1),var(--card));border-color:rgba(201,168,76,.45)}
+.pkg-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:.2rem .7rem;border-radius:20px;background:var(--gold);color:#080808;margin-bottom:.75rem;letter-spacing:.06em}
+.pkg-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:.35rem}
+.pkg-desc{font-size:.875rem;color:var(--muted);line-height:1.55;margin-bottom:1rem}
+.pkg-feats{list-style:none;margin-bottom:1.1rem}
+.pkg-feats li{font-size:.8rem;color:var(--muted);padding:.2rem 0;display:flex;align-items:center;gap:.4rem}
+.pkg-feats li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.pkg-foot{display:flex;align-items:center;justify-content:space-between}
+.pkg-price-lbl{font-size:.75rem;color:var(--muted)}
+.pkg-price{font-size:1rem;font-weight:700;color:var(--gold)}
+
+/* ======================================
+   GLAMPING
+====================================== */
+.glamp-split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:3rem}
+.glamp-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.glamp-img{border-radius:14px;overflow:hidden;position:relative}
+.glamp-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.glamp-img:hover img{transform:scale(1.05)}
+.glamp-img.tall{grid-column:1/-1;height:220px}
+.glamp-img.short{height:140px}
+.tag-pill{font-size:.75rem;padding:.2rem .65rem;border-radius:20px;border:1px solid var(--secondary-border);color:var(--secondary-light);background:var(--secondary-bg)}
+.filter-pill{font-size:.8rem;padding:.5rem 1rem;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--card);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.filter-pill.active{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600}
+.filter-pill:hover{border-color:var(--gold)}
+.search-wrap{position:relative;flex:1;min-width:200px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.15rem 0}
+.search-wrap i{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.1rem}
+.search-wrap input{width:100%;padding:.65rem 1rem .65rem 2.6rem;box-sizing:border-box}
+
+/* ======================================
+   PROMO
+====================================== */
+#promo{background:var(--bg);background-image:radial-gradient(ellipse at center,rgba(201,168,76,.1) 0%,transparent 65%)}
+.promo-inner{max-width:680px;margin:0 auto;text-align:center}
+.promo-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.15em;padding:.4rem 1.1rem;border-radius:20px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.4);color:var(--gold);margin-bottom:1.5rem}
+.promo-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:1rem}
+.promo-sub{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:2rem}
+.countdown{display:flex;justify-content:center;align-items:center;gap:.75rem;margin-bottom:2.5rem}
+.cd-box{border-radius:16px;padding:1rem .9rem;text-align:center;min-width:72px}
+.cd-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.cd-lbl{font-size:.6rem;color:var(--muted);margin-top:.35rem;letter-spacing:.08em}
+.cd-sep{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.promo-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.promo-btns .btn-gold{padding:.9rem 2.5rem;border-radius:12px;font-size:.9rem}
+.promo-btns .btn-outline{padding:.9rem 2rem;border-radius:12px;font-size:.88rem}
+
+/* ======================================
+   TESTIMONIAL SLIDER
+====================================== */
+.testi-viewport{overflow-x:scroll;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none}
+.testi-viewport::-webkit-scrollbar{display:none}
+.testi-track{display:flex;gap:1.25rem;padding-bottom:.25rem}
+.testi-card{
+  flex-shrink:0;scroll-snap-align:start;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--border);border-radius:20px;padding:1.5rem;
+  box-shadow:var(--shadow-card);
+  width:300px;display:flex;flex-direction:column
+}
+.testi-card-width{width:300px}
+.testi-stars{color:var(--gold);font-size:.85rem;letter-spacing:.1em;margin-bottom:.75rem}
+.testi-text{
+  font-size:.82rem;color:var(--muted);line-height:1.7;
+  font-style:italic;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+  flex:1;margin-bottom:1rem
+}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#0A0804;background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light))}
+.testi-name{font-weight:600;font-size:.82rem}
+.testi-trip{font-size:.75rem;color:var(--gold)}
+.testi-name{font-weight:600;font-size:.85rem}
+.testi-trip{font-size:.8rem;color:var(--gold)}
+.testi-ctrl{display:flex;align-items:center;gap:.75rem;margin-top:1.75rem;justify-content:flex-end}
+.testi-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border2);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.2rem;transition:background .2s}
+.testi-btn:hover{background:rgba(201,168,76,.1)}
+.testi-dots{display:flex;gap:.5rem}
+.t-dot{width:8px;height:8px;border-radius:20px;background:rgba(201,168,76,.3);border:none;cursor:pointer;transition:all .3s;padding:0}
+.t-dot.active{background:var(--gold);width:24px}
+
+/* ======================================
+   CARA BOOKING
+====================================== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center}
+.step-icon-wrap{width:68px;height:68px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.25rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25)}
+.step-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin-bottom:.5rem}
+.step-desc{font-size:.875rem;color:var(--muted);line-height:1.65}
+.step-cta{text-align:center;margin-top:3rem}
+.step-cta .btn-gold{padding:1rem 3rem;border-radius:14px;font-size:.95rem}
+
+/* ======================================
+   FOOTER
+====================================== */
+footer{padding:60px 5% 32px;background:var(--bg);border-top:1px solid var(--border)}
+[data-theme="dark"] footer{background:#040404}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto 3rem}
+.footer-desc{font-size:.875rem;color:var(--muted);line-height:1.75;margin:.75rem 0 1.25rem}
+.social-row{display:flex;gap:.6rem}
+.soc-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1rem;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s}
+.soc-btn:hover{border-color:var(--gold);color:var(--gold)}
+.footer-col-title{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.875rem;transition:color .2s;display:flex;align-items:center;gap:.4rem}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;max-width:1100px;margin:0 auto}
+.footer-copy{font-size:.8rem;color:var(--muted)}
+
+/* ======================================
+   WA FLOAT
+====================================== */
+#wa-float{
+  position:fixed;bottom:5.5rem;right:1.5rem;z-index:89;
+  background:#25D366;color:#fff;border-radius:50px;
+  padding:.75rem 1.1rem;display:flex;align-items:center;gap:.5rem;
+  font-size:.82rem;font-weight:600;text-decoration:none;
+  box-shadow:0 8px 32px rgba(37,211,102,.4);
+  transition:transform .2s,box-shadow .2s
+}
+#wa-float:hover{transform:scale(1.07);box-shadow:0 12px 40px rgba(37,211,102,.6)}
+#wa-float span{display:none}
+@media(min-width:640px){#wa-float span{display:inline}#wa-float{bottom:1.5rem}}
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+@media(max-width:1024px){
+  .atv-split,.glamp-split{grid-template-columns:1fr;gap:2rem}
+  .atv-img{height:320px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-grid>*:first-child{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  section{padding:60px 4%}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .cards-grid{grid-template-columns:1fr}
+  .pkg-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .countdown{gap:.4rem}
+  .cd-box{min-width:60px;padding:.75rem .5rem}
+  .cd-num{font-size:1.75rem}
+}
+
+/* -- PRICE ANCHORING */
+.price-original{font-size:.75rem;color:var(--muted);text-decoration:line-through;line-height:1.2;display:block;margin-bottom:.1rem}
+.price-row{display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap}
+.price-savings{display:inline-block;background:var(--success-bg,rgba(76,175,80,.15));color:var(--success,#4caf50);border:1px solid rgba(76,175,80,.3);font-size:.65rem;font-weight:700;padding:.15rem .5rem;border-radius:var(--r-full,9999px);letter-spacing:.03em;white-space:nowrap}
+
+/* -- SCARCITY BADGES */
+.scarcity-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.65rem;font-weight:600;padding:.25rem .65rem;border-radius:20px;margin-bottom:.6rem;letter-spacing:.02em;white-space:nowrap}
+.scarcity-hot{background:rgba(255,87,34,.12);color:#ff5722;border:1px solid rgba(255,87,34,.25);border-radius:var(--r-full,9999px)}
+.scarcity-recent{background:var(--info-bg,rgba(33,150,243,.12));color:var(--info,#2196f3);border:1px solid rgba(33,150,243,.25);border-radius:var(--r-full,9999px)}
+.scarcity-views{background:var(--purple-bg,rgba(156,39,176,.12));color:var(--purple,#9c27b0);border:1px solid rgba(156,39,176,.25);border-radius:var(--r-full,9999px)}
+
+/* -- EXIT INTENT POPUP */
+#exit-popup{position:fixed;bottom:-100%;left:50%;transform:translateX(-50%);z-index:9999;width:min(420px,calc(100vw - 2rem));background:var(--card);border:1px solid rgba(201,168,76,.25);border-radius:20px;padding:1.75rem;box-shadow:0 -4px 40px rgba(0,0,0,.3),0 0 0 1px rgba(201,168,76,.1);transition:bottom .45s cubic-bezier(.34,1.56,.64,1);will-change:bottom}
+#exit-popup.show{bottom:1.5rem}
+.exit-close{position:absolute;top:.85rem;right:.85rem;background:none;border:none;color:var(--muted);font-size:1.25rem;cursor:pointer;padding:.25rem;line-height:1;opacity:.7;transition:opacity .2s}
+.exit-close:hover{opacity:1}
+.exit-icon{font-size:2rem;margin-bottom:.75rem;display:block;text-align:center}
+.exit-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--text);text-align:center;margin-bottom:.35rem}
+.exit-sub{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:1.25rem;line-height:1.6}
+.exit-form{display:flex;flex-direction:column;gap:.65rem}
+.exit-input{background:var(--bg);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:.75rem 1rem;font-size:.875rem;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.exit-input:focus{border-color:rgba(201,168,76,.6)}
+.exit-input::placeholder{color:var(--muted)}
+.exit-submit{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#000;border:none;border-radius:10px;padding:.85rem;font-size:.875rem;font-weight:700;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.exit-submit:hover{opacity:.9}
+.exit-skip{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-align:center;padding:.35rem;width:100%;transition:color .2s}
+.exit-skip:hover{color:var(--text)}
+.exit-privacy{font-size:.65rem;color:var(--muted);text-align:center;margin-top:.25rem}
+
+/* -- PHOTO PLACEHOLDER (hapus setelah foto real diupload) */
+.photo-slot{position:relative;width:100%;height:100%;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(201,168,76,.08) 0%,rgba(201,168,76,.03) 100%);border:1.5px dashed rgba(201,168,76,.25)}
+.photo-slot-icon{font-size:2rem;margin-bottom:.5rem;opacity:.6}
+.photo-slot-label{font-size:.7rem;font-weight:600;color:rgba(201,168,76,.7);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.25rem}
+.photo-slot-spec{font-size:.6rem;color:var(--muted);text-align:center;padding:0 1rem;line-height:1.5;opacity:.7}
+
+/* -- TESTIMONIAL VERIFIED BADGE */
+.testi-verified{display:inline-flex;align-items:center;gap:.25rem;font-size:.6rem;font-weight:700;color:var(--success,#4caf50);background:var(--success-bg,rgba(76,175,80,.1));border:1px solid rgba(76,175,80,.25);border-radius:var(--r-full,9999px);padding:.15rem .5rem;margin-bottom:.5rem;letter-spacing:.04em}
+
+/* -- GOOGLE REVIEWS PLACEHOLDER */
+.greview-section{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.greview-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.greview-logo{display:flex;align-items:center;gap:.4rem;font-weight:700;font-size:.9rem;color:var(--text)}
+.greview-rating{display:flex;align-items:center;gap:.35rem;font-size:.85rem}
+.greview-stars-big{color:#fbbc04;font-size:1rem;letter-spacing:.05em}
+.greview-count{color:var(--muted);font-size:.78rem}
+.greview-placeholder{background:var(--card);border:1.5px dashed rgba(201,168,76,.2);border-radius:16px;padding:1.75rem;text-align:center}
+.greview-placeholder-icon{font-size:2.5rem;margin-bottom:.75rem}
+.greview-placeholder-title{font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:.4rem}
+.greview-placeholder-sub{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem}
+.greview-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.greview-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;border-radius:10px;font-size:.8rem;font-weight:600;text-decoration:none;transition:opacity .2s}
+.greview-btn:hover{opacity:.85}
+.greview-btn-primary{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.greview-btn-secondary{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+
+/* -- LOKASI / MAPS SECTION */
+.maps-intro{text-align:center;margin-bottom:2.5rem}
+.maps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}
+.map-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.map-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.map-embed-wrap{position:relative;width:100%;padding-top:56.25%;background:var(--bg)}
+.map-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.map-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border-bottom:1px solid var(--border)}
+.map-placeholder-icon{font-size:2.5rem;margin-bottom:.5rem}
+.map-placeholder-text{font-size:.75rem;color:var(--muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.map-info{padding:1rem 1.25rem}
+.map-area{font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:.25rem}
+.map-desc{font-size:.78rem;color:var(--muted);line-height:1.55;margin-bottom:.75rem}
+.map-distances{display:flex;flex-wrap:wrap;gap:.4rem}
+.map-dist-tag{font-size:.65rem;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:.2rem .6rem;color:var(--muted)}
+.map-overview{border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-top:1rem}
+.map-overview .map-embed-wrap{padding-top:35%}
+@media(max-width:600px){.map-overview .map-embed-wrap{padding-top:60%}}
+
+/* ======================================
+   BATCH 3 + RESPONSIF FIXES
+====================================== */
+.cal-input{width:100%;padding:.75rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:.85rem;transition:border-color .2s;box-sizing:border-box;outline:none}
+.cal-input:focus{border-color:var(--gold)}
+.cal-input::placeholder{color:var(--muted)}
+textarea.cal-input{resize:vertical}
+.voucher-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;box-shadow:var(--shadow-card);transition:transform .3s,box-shadow .3s,border-color .3s}
+.voucher-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--border2)}
+.voucher-ribbon{position:absolute;top:16px;right:-28px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:#0A0804;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.3rem 2.5rem;transform:rotate(40deg)}
+.rev-star-btn{background:none;border:none;cursor:pointer;padding:.25rem;transition:transform .15s}
+.rev-star-btn:hover{transform:scale(1.15)}
+.rev-star-btn svg{display:block}
+.rev-star-btn.active svg{color:var(--gold) !important}
+@media(max-width:768px){.testi-card,.testi-card-width{width:calc(100vw - 4rem)}}
+@media(max-width:480px){.voucher-card{padding:1.5rem}.cal-input{font-size:.82rem}}
+</style>
+
+<!-- -- Schema.org Structured Data -->
+<!-- TODO: Isi semua nilai [PLACEHOLDER] dengan data real sebelum deploy -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "TouristAttraction"],
+      "@id": "https://puncakgateway.com/#business",
+      "name": "Puncak Gateway",
+      "alternateName": "Puncak Gateway - Gerbang Utama Wisata Puncak",
+      "description": "Platform wisata premium Puncak Bogor. Sewa villa dengan kolam renang private, paket ATV, glamping eksklusif. 300+ pilihan mulai Rp 750.000 per malam.",
+      "url": "https://puncakgateway.com",
+      "logo": "https://puncakgateway.com/logo.png",
+      "image": "https://puncakgateway.com/og-image.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Puncak",
+        "addressRegion": "Jawa Barat",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-6.7008",
+        "longitude": "106.9278"
+      },
+      "hasMap": "https://maps.google.com/?q=-6.7008,106.9278",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "08:00",
+        "closes": "22:00"
+      },
+      "priceRange": "Rp 750.000 - Rp 10.000.000",
+      "currenciesAccepted": "IDR",
+      "paymentAccepted": "Cash, Transfer Bank, WhatsApp",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Puncak, Bogor, Jawa Barat"
+      },
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Sewa Villa Puncak",
+          "description": "300+ pilihan villa dengan kolam renang private, view pegunungan, dan fasilitas lengkap.",
+          "priceCurrency": "IDR",
+          "price": "750000",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Paket ATV Puncak",
+          "description": "Petualangan ATV melewati kebun teh dan sawah Puncak Bogor. 12+ trek tersedia.",
+          "priceCurrency": "IDR",
+          "price": "150000",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Glamping Premium Puncak",
+          "description": "Glamping mewah dengan kasur spring bed, view pegunungan, dan BBQ area.",
+          "priceCurrency": "IDR",
+          "price": "800000",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+// -- PWA SERVICE WORKER REGISTRATION
+// Hanya aktif di production domain, skip saat preview lokal
+if ('serviceWorker' in navigator) {
+  var swHost = window.location.hostname;
+  var isProduction = swHost !== '' && swHost !== 'localhost' && swHost.indexOf('claudeusercontent') === -1 && swHost.indexOf('127.0.0.1') === -1;
+  if (isProduction) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
+        console.log('SW registered:', reg.scope);
+      }).catch(function(err) {
+        console.log('SW failed:', err);
+      });
+    });
+  }
+}
+</script>
+
+<!-- -- Analytics (dipindah ke bawah style agar tidak blocking viewport) -->
+<!-- -- Google Analytics 4 -->
+<!-- TODO: Ganti G-XXXXXXXXXX dengan Measurement ID dari https://analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+  // Custom events -- dipanggil saat user booking
+  window.trackBooking = function(propertyName, type) {
+    gtag('event', 'booking_intent', {
+      event_label: propertyName,
+      booking_type: type || 'villa'
+    });
+  };
+  window.trackWAClick = function(source) {
+    gtag('event', 'wa_click', {
+      event_label: source || 'unknown'
+    });
+  };
+</script>
+
+<!-- -- Microsoft Clarity (Heatmap & Session Recording) -->
+<!-- TODO: Ganti XXXXXXXXXX dengan Project ID dari https://clarity.microsoft.com -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "XXXXXXXXXX");
+</script>
+
+</head>
+<body>
+
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-popup" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+  <button class="exit-close" data-action="close-exit" aria-label="Tutup popup">×</button>
+  <span class="exit-icon">🎁</span>
+  <div class="exit-title" id="exit-title">Tunggu - Ada Promo Spesial!</div>
+  <p class="exit-sub">Tinggalkan nomor WhatsApp Anda dan dapatkan <strong style="color:var(--gold)">penawaran eksklusif</strong> villa Puncak yang tidak dipublikasikan.</p>
+  <div class="exit-form">
+    <input type="tel" class="exit-input" id="exit-wa" aria-label="Nomor WhatsApp Anda" placeholder="Nomor WhatsApp (cth: 08123456789)" inputmode="numeric" maxlength="15">
+    <button class="exit-submit" data-action="submit-exit">
+      <i class='bx bxl-whatsapp' style="font-size:1.1rem"></i> Kirim via WhatsApp
+    </button>
+    <button class="exit-skip" data-action="close-exit">Tidak, saya tidak mau promo eksklusif</button>
+    <p class="exit-privacy">🔒 Nomor Anda aman. Tidak ada spam, hanya penawaran terbaik.</p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="logo-wrap">
+    <span class="logo-main">PUNCAK GATEWAY</span>
+    <span class="logo-sub">Gerbang Utama Wisata Puncak</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#villa" class="nav-link">Villa</a></li>
+    <li><a href="#atv" class="nav-link">ATV</a></li>
+    <li><a href="#glamping" class="nav-link">Glamping</a></li>
+    <li><a href="#promo" class="nav-link">Promo</a></li>
+    <li><a href="#testimoni" class="nav-link">Ulasan</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="theme-btn" aria-label="Aktifkan dark mode"><i id="theme-icon" class='bx bx-sun'></i></button>
+    <a data-wa-msg="" href="#wa-float" target="_blank" class="btn-gold nav-cta" style="border-radius:8px;padding:.55rem 1.25rem;font-size:.8rem;"><i class='bx bxl-whatsapp'></i> Hubungi CS</a>
+    <button class="hamburger" data-action="toggle-menu" id="hbg">
+      <span id="hb1"></span><span id="hb2"></span><span id="hb3"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <a href="#villa" data-action="close-menu">Villa</a>
+  <a href="#atv" data-action="close-menu">ATV</a>
+  <a href="#glamping" data-action="close-menu">Glamping</a>
+  <a href="#promo" data-action="close-menu">Promo</a>
+  <a href="#testimoni" data-action="close-menu">Ulasan</a>
+  <a data-wa-msg="" href="#wa-float" target="_blank" class="btn-gold" style="padding:.75rem 1.5rem;border-radius:12px;font-size:.85rem;justify-content:center;margin-top:1rem;"><i class='bx bxl-whatsapp'></i> Hubungi CS</a>
+</div>
+<div id="mob-overlay" data-action="close-menu"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow hero-visible">
+      <span class="eyebrow"><span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span> Wisata Premium Puncak, Bogor <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span></span>
+    </div>
+    <h1 class="hero-title hero-visible" style="animation-delay:.1s">Gerbang Utama<br>Wisata <span class="gold-text">Puncak</span></h1>
+    <p class="hero-sub hero-visible" style="animation-delay:.2s">300+ villa dengan kolam renang private, ATV seru, dan glamping bintang lima - semua di satu platform. Booking mudah via WhatsApp, ketersediaan terkonfirmasi dalam 1 jam.</p>
+    <div class="hero-btns hero-visible" style="animation-delay:.3s">
+      <a href="#villa" class="btn-gold">Lihat 300+ Villa dari Rp 750rb →</a>
+      <a href="#book-bar" class="btn-outline"><i class='bx bx-calendar-check' style="font-size:1.1rem"></i> Cek Ketersediaan</a>
+    </div>
+    <div class="hero-stats hero-visible" style="animation-delay:.4s">
+      <div class="stat-box glass"><div class="stat-num"><span class="counter" data-target="300">0</span>+</div><div class="stat-lbl">Pilihan Villa</div></div>
+      <div class="stat-box glass"><div class="stat-num"><span class="counter" data-target="12">0</span>+</div><div class="stat-lbl">Trek ATV</div></div>
+      <div class="stat-box glass"><div class="stat-num"><span class="counter" data-target="25">0</span>+</div><div class="stat-lbl">Lokasi Glamping</div></div>
+      <div class="stat-box glass"><div class="stat-num">4.9<span style="font-size:1.1rem">★</span></div><div class="stat-lbl">Rating Tamu</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><i class='bx bx-chevron-down'></i></div>
+</section>
+
+<!-- STICKY BOOKING BAR -->
+<div id="book-bar">
+  <!-- Desktop -->
+  <div class="book-inner glass" style="display:none" id="book-desk">
+    <div class="book-tabs">
+      <button class="book-tab active" data-action="set-tab" data-tab="Villa">🏡 Villa</button>
+      <button class="book-tab" data-action="set-tab" data-tab="ATV">🏍️ ATV</button>
+      <button class="book-tab" data-action="set-tab" data-tab="Glamping">⛺ Glamping</button>
+    </div>
+    <div class="book-sep"></div>
+    <input type="date" class="book-input" id="ci" aria-label="Tanggal Check-in" placeholder="Check-in">
+    <div class="book-sep"></div>
+    <input type="date" class="book-input" id="co" aria-label="Tanggal Check-out" placeholder="Check-out">
+    <div class="book-sep"></div>
+    <input type="number" class="book-input" id="gt" aria-label="Jumlah Tamu" placeholder="Tamu" min="1" style="width:80px">
+    <button class="btn-gold book-btn" data-action="do-book" style="border-radius:10px">Cari Sekarang →</button>
+  </div>
+  <!-- Mobile -->
+  <div id="book-mob">
+    <div class="book-mob-collapsed glass" data-action="toggle-expand">
+      <div><div style="font-size:.9rem;font-weight:700;color:var(--gold)">Reservasi Sekarang</div><div class="muted" style="font-size:.72rem">Villa · ATV · Glamping</div></div>
+      <button class="btn-gold" style="padding:.6rem 1.25rem;border-radius:10px;font-size:.78rem;pointer-events:none">Pesan →</button>
+    </div>
+    <div class="book-mob-expanded glass" id="book-exp">
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <button class="book-tab active" data-action="set-tab" data-tab="Villa">🏡 Villa</button>
+        <button class="book-tab" data-action="set-tab" data-tab="ATV">🏍️ ATV</button>
+        <button class="book-tab" data-action="set-tab" data-tab="Glamping">⛺ Glamping</button>
+      </div>
+      <input type="date" class="book-field" id="mob-ci" aria-label="Tanggal Check-in" placeholder="Check-in">
+      <input type="date" class="book-field" id="mob-co" aria-label="Tanggal Check-out" placeholder="Check-out">
+      <input type="number" class="book-field" id="mob-gt" aria-label="Jumlah Tamu" placeholder="Jumlah Tamu" min="1">
+      <button class="btn-gold" data-action="do-book" style="padding:.85rem;border-radius:12px;justify-content:center;font-size:.88rem">Cari Sekarang →</button>
+      <button data-action="toggle-expand" class="muted" style="font-size:.72rem;text-align:center;background:none;border:none;cursor:pointer">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- AKTIVITAS -->
+<div class="gold-line"></div>
+<section class="s-bg1" id="aktivitas">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Jelajahi Puncak</span><h2 class="section-title">Pilihan Aktivitas Terbaik</h2></div>
+      <a href="#aktivitas" class="see-all">Lihat Semua <i class='bx bx-right-arrow-alt'></i></a>
+    </div>
+    <div class="act-scroll reveal">
+      <a href="#villa" class="act-card"><span class="act-icon">🏡</span><div class="act-name">Villa</div><div class="act-count">300+ Pilihan</div></a>
+      <a href="#atv" class="act-card"><span class="act-icon">🏍️</span><div class="act-name">ATV</div><div class="act-count">12+ Trek</div></a>
+      <a href="#glamping" class="act-card"><span class="act-icon">⛺</span><div class="act-name">Glamping</div><div class="act-count">25+ Lokasi</div></a>
+      <a href="#aktivitas" class="act-card"><span class="act-icon">🌿</span><div class="act-name">Outbound</div><div class="act-count">15+ Program</div></a>
+      <a href="#aktivitas" class="act-card"><span class="act-icon">🚙</span><div class="act-name">Jeep Tour</div><div class="act-count">10+ Rute</div></a>
+      <a href="#glamping" class="act-card"><span class="act-icon">🔥</span><div class="act-name">Camping</div><div class="act-count">20+ Lokasi</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- VILLA -->
+<div class="gold-line"></div>
+<section class="s-bg2" id="villa">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Villa Populer</span><h2 class="section-title">Villa Favorit<br>Pilihan Keluarga</h2><p class="muted" style="font-size:.85rem;margin-top:.4rem">Kolam renang pribadi, view pegunungan, fasilitas premium.</p></div>
+      <a href="#villa" class="see-all">Lihat Semua <i class='bx bx-right-arrow-alt'></i></a>
+    </div>
+    <div class="reveal" style="margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center">
+      <div class="search-wrap">
+        <i class='bx bx-search'></i>
+        <input type="text" id="villa-search" class="book-input" placeholder="Cari nama villa atau lokasi...">
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="villa-filter-pills">
+        <button class="filter-pill active" data-filter-loc="all">Semua</button>
+        <button class="filter-pill" data-filter-loc="cisarua">Cisarua</button>
+        <button class="filter-pill" data-filter-loc="megamendung">Megamendung</button>
+        <button class="filter-pill" data-filter-loc="cipanas">Cipanas</button>
+      </div>
+    </div>
+    <p id="villa-no-result" style="display:none;text-align:center;color:var(--muted);padding:2rem 0;font-size:.9rem">Tidak ada villa yang cocok. Coba kata kunci atau filter lain ya.</p>
+    <div class="cards-grid" id="villa-grid">
+      <div class="c-card reveal" data-search="villa alana cisarua" data-loc="cisarua">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Villa Alana" -- Spec: Eksterior kolam renang . 1200x800px . Landscape . Cisarua --><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format&fit=crop" alt="Foto Villa Alana" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">Kolam Renang</span><div class="c-fav"><i class='bx bx-heart'></i></div></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-hot">🔥 Populer minggu ini</div><h3 class="c-name"><a href="pages/villa-alana.html" style="color:inherit;text-decoration:none">Villa Alana</a></h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Cisarua, Puncak</div><div class="c-meta"><span><i class='bx bx-group'></i> 20 Orang</span><span><i class='bx bx-bed'></i> 8 Kamar</span></div><div class="c-foot"><div><span class="price-original">Rp 4.375.000</span><div class="price-row"><div class="c-price">Rp 3.500.000<small>/malam</small></div><span class="price-savings">Hemat Rp 875rb</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Villa Alana">Pesan</button></div></div>
+      </div>
+      <div class="c-card reveal" style="transition-delay:.1s" data-search="villa white house megamendung" data-loc="megamendung">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Villa White House" -- Spec: Fasad depan villa . 1200x800px . Landscape . Megamendung --><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format&fit=crop" alt="Foto Villa White House" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">Private Villa</span><div class="c-fav"><i class='bx bx-heart'></i></div></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-views">👁 14 orang sedang melihat</div><h3 class="c-name"><a href="pages/villa-white-house.html" style="color:inherit;text-decoration:none">Villa White House</a></h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Megamendung, Puncak</div><div class="c-meta"><span><i class='bx bx-group'></i> 30 Orang</span><span><i class='bx bx-bed'></i> 10 Kamar</span></div><div class="c-foot"><div><span class="price-original">Rp 6.000.000</span><div class="price-row"><div class="c-price">Rp 4.800.000<small>/malam</small></div><span class="price-savings">Hemat Rp 1,2jt</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Villa White House">Pesan</button></div></div>
+      </div>
+      <div class="c-card reveal" style="transition-delay:.2s" data-search="villa mountain view cisarua" data-loc="cisarua">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Villa Mountain View" -- Spec: View pegunungan dari teras . 1200x800px . Landscape . Cisarua --><img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?w=800&q=80&auto=format&fit=crop" alt="Foto Villa Mountain View" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">View Pegunungan</span><div class="c-fav"><i class='bx bx-heart'></i></div></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-recent">⚡ Baru dipesan 3 jam lalu</div><h3 class="c-name"><a href="pages/villa-mountain-view.html" style="color:inherit;text-decoration:none">Villa Mountain View</a></h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Cisarua, Puncak</div><div class="c-meta"><span><i class='bx bx-group'></i> 15 Orang</span><span><i class='bx bx-bed'></i> 6 Kamar</span></div><div class="c-foot"><div><span class="price-original">Rp 3.500.000</span><div class="price-row"><div class="c-price">Rp 2.750.000<small>/malam</small></div><span class="price-savings">Hemat Rp 750rb</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Villa Mountain View">Pesan</button></div></div>
+      </div>
+      <div class="c-card reveal" style="transition-delay:.3s" data-search="villa keluarga bahagia cipanas" data-loc="cipanas">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Villa Keluarga Bahagia" -- Spec: Area outdoor & taman . 1200x800px . Landscape . Cipanas --><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80&auto=format&fit=crop" alt="Foto Villa Keluarga Bahagia" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">Family Villa</span><div class="c-fav"><i class='bx bx-heart'></i></div></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-hot">🔥 Populer bulan ini</div><h3 class="c-name"><a href="pages/villa-keluarga-bahagia.html" style="color:inherit;text-decoration:none">Villa Keluarga Bahagia</a></h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Cipanas, Puncak</div><div class="c-meta"><span><i class='bx bx-group'></i> 25 Orang</span><span><i class='bx bx-bed'></i> 9 Kamar</span></div><div class="c-foot"><div><span class="price-original">Rp 5.250.000</span><div class="price-row"><div class="c-price">Rp 4.200.000<small>/malam</small></div><span class="price-savings">Hemat Rp 1jt</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Villa Keluarga Bahagia">Pesan</button></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATV -->
+<div class="gold-line"></div>
+<section class="s-bg1" id="atv">
+  <div class="section-inner">
+    <div class="atv-split reveal">
+      <div class="atv-img">
+        <div class="skeleton"></div>
+        <!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto ATV Puncak" -- Spec: Aksi ATV di kebun teh . 1600x900px . Landscape . Dramatik --><img src="https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?w=800&q=80&auto=format&fit=crop" alt="Foto ATV Puncak" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1">
+        <div class="atv-img-overlay"></div>
+        <div class="atv-stat glass"><div class="atv-stat-num">12+</div><div class="atv-stat-lbl">Trek Tersedia</div></div>
+      </div>
+      <div>
+        <span class="eyebrow" style="margin-bottom:1rem;display:block">Aktivitas ATV</span>
+        <h2 class="section-title" style="margin-bottom:1rem">Petualangan yang<br>Tak <span class="gold-text">Terlupakan</span></h2>
+        <p class="muted" style="font-size:.85rem;margin-bottom:1.5rem;line-height:1.75">Trek berbagai level kesulitan, didampingi instruktur bersertifikat. Cocok untuk pemula, keluarga, hingga yang berpengalaman.</p>
+        <div class="feat-list">
+          <div class="feat-item"><span class="feat-icon">🛡️</span><div><h3 class="feat-title">Instruktur Bersertifikat</h3><div class="feat-desc">Setiap trek didampingi profesional berpengalaman. Aman untuk seluruh keluarga.</div></div></div>
+          <div class="feat-item"><span class="feat-icon">🏔️</span><div><h3 class="feat-title">View Kelas Dunia</h3><div class="feat-desc">Melewati kebun teh dan view Gunung Gede Pangrango yang memukau.</div></div></div>
+          <div class="feat-item"><span class="feat-icon">🎯</span><div><h3 class="feat-title">Paket Rombongan</h3><div class="feat-desc">Sempurna untuk gathering, team building, atau liburan keluarga besar.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg reveal"><h3 class="pkg-name">Paket Santai</h3><div class="scarcity-badge scarcity-recent" style="margin-top:.5rem">⚡ Baru dipesan 1 jam lalu</div><div class="pkg-desc">Trek ringan 30 menit. Cocok untuk pertama kali, aman untuk anak-anak.</div><ul class="pkg-feats"><li>Durasi 30 menit</li><li>Trek flat & mudah</li><li>Helm & perlengkapan included</li></ul><div class="pkg-foot"><div><div class="pkg-price-lbl">Per orang</div><div class="pkg-price">Rp 150.000</div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Paket ATV Santai">Pesan</button></div></div>
+      <div class="pkg featured reveal" style="transition-delay:.1s"><span class="pkg-badge">⭐ Terpopuler</span><h3 class="pkg-name">Paket Petualangan</h3><div class="scarcity-badge scarcity-hot" style="margin-top:.5rem">🔥 Paket terlaris bulan ini</div><div class="pkg-desc">Trek 60 menit melewati sawah & kebun teh. Favorit rombongan.</div><ul class="pkg-feats"><li>Durasi 60 menit</li><li>Trek medium + view premium</li><li>Free foto di spot terbaik</li><li>Instruktur pendamping</li></ul><div class="pkg-foot"><div><div class="pkg-price-lbl">Per orang</div><div class="pkg-price">Rp 250.000</div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Paket ATV Petualangan">Pesan</button></div></div>
+      <div class="pkg reveal" style="transition-delay:.2s"><h3 class="pkg-name">Paket Ekstrem</h3><div class="scarcity-badge scarcity-views" style="margin-top:.5rem">👁 5 orang sedang melihat</div><div class="pkg-desc">Trek 2 jam penuh tantangan berbagai medan. Untuk yang berpengalaman.</div><ul class="pkg-feats"><li>Durasi 120 menit</li><li>Multi medan</li><li>Video dokumentasi included</li></ul><div class="pkg-foot"><div><div class="pkg-price-lbl">Per orang</div><div class="pkg-price">Rp 400.000</div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Paket ATV Ekstrem">Pesan</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GLAMPING -->
+<div class="gold-line"></div>
+<section class="s-bg2" id="glamping">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="eyebrow" style="justify-content:center;margin-bottom:.75rem;display:flex">Glamping & Camping</span>
+      <h2 class="section-title">Malam di Alam,<br>Nyaman Seperti <span class="gold-text">Bintang Lima</span></h2>
+      <p class="muted" style="font-size:.85rem;margin-top:.75rem;max-width:480px;margin-left:auto;margin-right:auto">Tidur di bawah bintang tanpa meninggalkan kenyamanan. Kasur premium, view pegunungan, momen yang bikin nagih.</p>
+    </div>
+    <div class="glamp-split reveal">
+      <div class="glamp-mosaic">
+        <div class="glamp-img tall"><div class="skeleton" style="position:absolute;inset:0"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Glamping Utama" -- Spec: Area glamping wide shot . 1600x1200px . Portrait . Megamendung --><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80&auto=format&fit=crop" alt="Foto Glamping Utama" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"></div>
+        <div class="glamp-img short" style="position:relative"><div class="skeleton" style="position:absolute;inset:0"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Interior Tenda" -- Spec: Kasur & bedding premium . 800x600px . Interior . Estetik --><img src="https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=800&q=80&auto=format&fit=crop" alt="Foto Interior Tenda" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"></div>
+        <div class="glamp-img short" style="position:relative"><div class="skeleton" style="position:absolute;inset:0"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Malam Glamping" -- Spec: Bonfire / langit berbintang . 800x600px . Night shot --><img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800&q=80&auto=format&fit=crop" alt="Foto Malam Glamping" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"></div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item"><span class="feat-icon">🛏️</span><div><h3 class="feat-title">Kasur & Bedding Premium</h3><div class="feat-desc">Spring bed, linen bersih, bantal empuk. Bukan camping biasa.</div></div></div>
+        <div class="feat-item"><span class="feat-icon">🌄</span><div><h3 class="feat-title">Sunrise Eksklusif</h3><div class="feat-desc">Bangun pagi dengan sunrise dari depan tenda. Momen tak terlupakan.</div></div></div>
+        <div class="feat-item"><span class="feat-icon">🔥</span><div><h3 class="feat-title">BBQ & Bonfire Area</h3><div class="feat-desc">Area bakar-bakaran dan api unggun - malam kebersamaan yang memorable.</div></div></div>
+        <div class="feat-item"><span class="feat-icon">📶</span><div><h3 class="feat-title">Fasilitas Lengkap</h3><div class="feat-desc">Toilet bersih, mushola, WiFi. Alam bukan alasan untuk tidak nyaman.</div></div></div>
+      </div>
+    </div>
+    <div class="cards-grid" style="margin-top:2rem">
+      <div class="c-card reveal">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Glamping Hutan Pinus" -- Spec: Tenda di antara pohon pinus . 1200x800px . Landscape --><img src="https://images.unsplash.com/photo-1510672981848-a1c4f1cb5ccf?w=800&q=80&auto=format&fit=crop" alt="Foto Glamping Hutan Pinus" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">Hutan Pinus</span></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-recent">⚡ Baru dipesan kemarin</div><h3 class="c-name">Glamping Hutan Pinus</h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Megamendung, Puncak</div><div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem"><span class="tag-pill">🌲 Pinus</span><span class="tag-pill">🔥 Bonfire</span></div><div class="c-foot"><div><span class="price-original">Rp 1.000.000</span><div class="price-row"><div class="c-price">Rp 800.000<small>/malam</small></div><span class="price-savings">Hemat Rp 200rb</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Glamping Hutan Pinus">Pesan</button></div></div>
+      </div>
+      <div class="c-card reveal" style="transition-delay:.1s">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Glamping Puncak Bintang" -- Spec: Sunrise dari glamping . 1200x800px . Golden hour --><img src="https://images.unsplash.com/photo-1445308394109-4ec2920981b1?w=800&q=80&auto=format&fit=crop" alt="Foto Glamping Puncak Bintang" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">Puncak Bintang</span></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-views">👁 8 orang sedang melihat</div><h3 class="c-name">Glamping Puncak Bintang</h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Cisarua, Puncak</div><div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem"><span class="tag-pill">⭐ Bintang</span><span class="tag-pill">🌄 Sunrise</span></div><div class="c-foot"><div><span class="price-original">Rp 825.000</span><div class="price-row"><div class="c-price">Rp 650.000<small>/malam</small></div><span class="price-savings">Hemat Rp 175rb</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Glamping Puncak Bintang">Pesan</button></div></div>
+      </div>
+      <div class="c-card reveal" style="transition-delay:.2s">
+        <div class="c-img-wrap"><div class="skeleton"></div><!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Glamping Kebun Teh" -- Spec: Tenda di hamparan kebun teh . 1200x800px . Aerial/wide --><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop" alt="Foto Glamping Kebun Teh" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"><span class="c-badge">Kebun Teh</span></div>
+        <div class="c-body"><div class="scarcity-badge scarcity-hot">🔥 Favorit akhir pekan</div><h3 class="c-name">Glamping Kebun Teh</h3><div class="c-loc"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Puncak Pass, Bogor</div><div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem"><span class="tag-pill">🍵 Teh</span><span class="tag-pill">📸 Instagramable</span></div><div class="c-foot"><div><span class="price-original">Rp 950.000</span><div class="price-row"><div class="c-price">Rp 750.000<small>/malam</small></div><span class="price-savings">Hemat Rp 200rb</span></div></div><button class="btn-gold c-btn" data-action="wa-book" data-property="Glamping Kebun Teh">Pesan</button></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO -->
+<div class="gold-line"></div>
+<section id="promo">
+  <div class="promo-inner reveal">
+    <div class="promo-badge">⚡ Penawaran Terbatas</div>
+    <h2 class="promo-title">Diskon Hingga<br><span class="gold-text">25% OFF</span></h2>
+    <p class="promo-sub">Untuk semua villa pilihan dan paket aktivitas di Puncak. Penawaran berakhir dalam:</p>
+    <div class="countdown">
+      <div class="cd-box glass"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Hari</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box glass"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Jam</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box glass"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Menit</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box glass"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Detik</div></div>
+    </div>
+    <div class="promo-btns">
+      <a href="#villa" class="btn-gold">Klaim Promo →</a>
+      <a data-wa-msg="text=Halo%2C%20saya%20ingin%20info%20promo%2025%25" href="#wa-float" target="_blank" class="btn-outline"><i class='bx bxl-whatsapp' style="font-size:1.1rem"></i> Tanya CS</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<div class="gold-line"></div>
+<section class="s-bg2" id="testimoni">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Kata Mereka</span><h2 class="section-title">Dipercaya Ribuan<br>Keluarga Indonesia</h2></div>
+      <div class="testi-ctrl">
+        <div class="testi-dots" id="t-dots"></div>
+        <button class="testi-btn" data-action="testi-prev" aria-label="Testimonial sebelumnya"><i class='bx bx-chevron-left'></i></button>
+        <button class="testi-btn" data-action="testi-next" aria-label="Testimonial berikutnya"><i class='bx bx-chevron-right'></i></button>
+      </div>
+    </div>
+    <div class="testi-viewport reveal">
+      <div class="testi-track" id="t-track">
+        <div class="testi-card testi-card-width"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem"><div class="testi-stars" style="display:flex;gap:2px;margin-bottom:.75rem"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="testi-verified">✓ Tamu Terverifikasi</span></div><p class="testi-text">"Villa-nya luar biasa bersih, kolam renangnya private, dan pemandangannya memukau. Anak-anak langsung jatuh cinta. Kami sudah 3x menginap dan tidak pernah kecewa."</p><div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rizki Pratama</div><div class="testi-trip">Villa Alana · Januari 2026</div></div></div></div>
+        <div class="testi-card testi-card-width"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem"><div class="testi-stars" style="display:flex;gap:2px;margin-bottom:.75rem"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="testi-verified">✓ Tamu Terverifikasi</span></div><p class="testi-text">"ATV-nya seru banget! Instrukturnya sabar, trek-nya variatif. Kami rombongan 15 orang dan semua menikmatinya. Team building paling berkesan yang pernah kami lakukan."</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sari Dewi</div><div class="testi-trip">Paket ATV Petualangan · Desember 2025</div></div></div></div>
+        <div class="testi-card testi-card-width"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem"><div class="testi-stars" style="display:flex;gap:2px;margin-bottom:.75rem"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="testi-verified">✓ Tamu Terverifikasi</span></div><p class="testi-text">"Glamping di kebun teh, pagi-pagi sunrise sambil minum teh hangat di depan tenda - momen yang tidak akan pernah saya lupakan. Fasilitasnya jauh melampaui ekspektasi!"</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Andi Cahyono</div><div class="testi-trip">Glamping Kebun Teh · November 2025</div></div></div></div>
+        <div class="testi-card testi-card-width"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem"><div class="testi-stars" style="display:flex;gap:2px;margin-bottom:.75rem"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="testi-verified">✓ Tamu Terverifikasi</span></div><p class="testi-text">"Jeep Tour-nya keren, supirnya ramah dan berpengetahuan. Bisa melihat sisi Puncak yang tidak pernah kami tahu sebelumnya. Highly recommended untuk pecinta adventure!"</p><div class="testi-author"><div class="testi-avatar">D</div><div><div class="testi-name">Diana Kusuma</div><div class="testi-trip">Jeep Tour · Oktober 2025</div></div></div></div>
+        <div class="testi-card testi-card-width"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem"><div class="testi-stars" style="display:flex;gap:2px;margin-bottom:.75rem"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="testi-verified">✓ Tamu Terverifikasi</span></div><p class="testi-text">"Booking-nya gampang, CS-nya responsif, dan villa-nya persis seperti di foto. Tidak ada surprise mengecewakan. Standar yang seharusnya ada di semua platform wisata."</p><div class="testi-author"><div class="testi-avatar">B</div><div><div class="testi-name">Budi Santoso</div><div class="testi-trip">Villa White House · September 2025</div></div></div></div>
+      </div>
+    </div>
+
+    <!-- GOOGLE REVIEWS PLACEHOLDER -->
+    <!-- TODO: Ganti section ini dengan Google Reviews embed atau widget nyata -->
+    <!-- Opsi 1: Embed Elfsight Google Reviews widget (elfsight.com) -->
+    <!-- Opsi 2: Widget dari GatherUp / Trustmary / Reviews.io -->
+    <!-- Opsi 3: Screenshot manual review WA - upload sebagai gambar -->
+    <div class="greview-section reveal">
+      <div class="greview-header">
+        <div class="greview-logo">
+          <span style="font-size:1.2rem">⭐</span>
+          Google Reviews
+        </div>
+        <div class="greview-rating">
+          <span class="greview-stars-big">★★★★★</span>
+          <span style="font-weight:700;color:var(--text)">4.9</span>
+          <span class="greview-count"><!-- TODO: Isi dengan jumlah review nyata --> · Lihat semua ulasan</span>
+        </div>
+      </div>
+      <div class="greview-placeholder">
+        <div class="greview-placeholder-icon">📝</div>
+        <div class="greview-placeholder-title">Ulasan Google Segera Hadir</div>
+        <p class="greview-placeholder-sub">
+          Kami sedang mengumpulkan ulasan terverifikasi dari tamu-tamu kami.<br>
+          Sudah pernah menginap bersama Puncak Gateway? Bagikan pengalaman Anda!
+        </p>
+        <div class="greview-actions">
+          <!-- TODO: Ganti # dengan link Google Business Profile -->
+          <!-- TODO: Ganti URL di bawah dengan link Google Business Profile Puncak Gateway -->
+        <a href="https://search.google.com/local/writereview?placeid=TODO_PLACE_ID" class="greview-btn greview-btn-primary" target="_blank" rel="noopener noreferrer">
+            ⭐ Tulis Ulasan di Google
+          </a>
+          <a data-wa-msg="text=Halo%2C%20saya%20baru%20selesai%20menginap%20dan%20ingin%20berbagi%20pengalaman" href="#wa-float" class="greview-btn greview-btn-secondary">
+            💬 Cerita via WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARA BOOKING -->
+<div class="gold-line"></div>
+<section class="s-bg1" id="cara-booking">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <span class="eyebrow" style="justify-content:center;display:flex;margin-bottom:.75rem">Mudah & Cepat</span>
+      <h2 class="section-title">Booking dalam <span class="gold-text">3 Langkah</span></h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="step-icon-wrap">🔍</div><div class="step-title">Pilih</div><p class="step-desc">Pilih villa, ATV, glamping, atau aktivitas lain sesuai keinginan dan budget Anda.</p></div>
+      <div class="step"><div class="step-icon-wrap">📋</div><div class="step-title">Pesan</div><p class="step-desc">Isi form reservasi atau hubungi CS via WhatsApp. Konfirmasi cepat dan mudah.</p></div>
+      <div class="step"><div class="step-icon-wrap">🎉</div><div class="step-title">Nikmati</div><p class="step-desc">Booking dikonfirmasi, pembayaran aman. Tinggal datang dan ciptakan kenangan indah.</p></div>
+    </div>
+    <div class="step-cta reveal">
+      <a data-wa-msg="text=Halo%2C%20saya%20ingin%20mulai%20reservasi" href="#wa-float" target="_blank" class="btn-gold"><i class='bx bxl-whatsapp' style="font-size:1.2rem"></i> Mulai Reservasi Sekarang</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- LOKASI PUNCAK GATEWAY -->
+<div class="gold-line"></div>
+<section id="lokasi" class="s-bg2">
+  <div class="section-inner">
+    <div class="maps-intro reveal">
+      <span class="eyebrow" style="justify-content:center;display:flex;margin-bottom:.75rem">Temukan Kami</span>
+      <h2 class="section-title">Lokasi <span class="gold-text">Strategis</span><br>di Jantung Puncak</h2>
+      <p class="muted" style="font-size:.85rem;margin-top:.75rem;max-width:520px;margin-left:auto;margin-right:auto">
+        Properti kami tersebar di tiga area terbaik Puncak - Cisarua, Megamendung, dan Cipanas.
+        Akses mudah dari Tol Ciawi, dekat berbagai objek wisata unggulan.
+      </p>
+    </div>
+
+    <!-- Tiga area utama -->
+    <div class="maps-grid">
+
+      <!-- Area Cisarua -->
+      <!-- TODO: Aktifkan iframe embed setelah Google Maps API key tersedia -->
+      <!-- Alternatif: Gunakan Google Maps Embed tanpa API key dengan URL di bawah -->
+      <div class="map-card reveal">
+        <div class="map-embed-wrap">
+          <!-- UNCOMMENT IFRAME INI setelah siap deploy dengan domain final:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15857.24!2d106.9265!3d-6.7085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69b4a4e3f3c3c3%3A0x1234!2sCisarua%2C+Bogor+Regency%2C+West+Java!5e0!3m2!1sen!2sid!4v1700000000000"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          -->
+          <div class="map-placeholder">
+            <span class="map-placeholder-icon">📍</span>
+            <span class="map-placeholder-text">Area Cisarua</span>
+            <a href="https://maps.google.com/?q=Cisarua+Bogor+Jawa+Barat" target="_blank" rel="noopener noreferrer" style="margin-top:.75rem;font-size:.7rem;color:var(--gold);font-weight:600;text-decoration:none">Buka di Google Maps →</a>
+          </div>
+        </div>
+        <div class="map-info">
+          <div class="map-area">📍 Area Cisarua</div>
+          <p class="map-desc">100+ villa premium dengan kolam renang private dan view Gunung Gede Pangrango. Area paling populer untuk keluarga.</p>
+          <div class="map-distances">
+            <span class="map-dist-tag">🛣️ 15 km dari Tol Ciawi</span>
+            <span class="map-dist-tag">🦁 5 km dari Taman Safari</span>
+            <span class="map-dist-tag">⛰️ View Gede Pangrango</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area Megamendung -->
+      <div class="map-card reveal" style="transition-delay:.1s">
+        <div class="map-embed-wrap">
+          <!-- UNCOMMENT IFRAME INI setelah siap:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15853!2d106.9102!3d-6.6985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69b4!2sMegamendung!5e0!3m2!1sen!2sid!4v1700000000001"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          -->
+          <div class="map-placeholder">
+            <span class="map-placeholder-icon">📍</span>
+            <span class="map-placeholder-text">Area Megamendung</span>
+            <a href="https://maps.google.com/?q=Megamendung+Bogor+Jawa+Barat" target="_blank" rel="noopener noreferrer" style="margin-top:.75rem;font-size:.7rem;color:var(--gold);font-weight:600;text-decoration:none">Buka di Google Maps →</a>
+          </div>
+        </div>
+        <div class="map-info">
+          <div class="map-area">📍 Area Megamendung</div>
+          <p class="map-desc">Kawasan sejuk dengan kebun teh yang ikonik. Lokasi favorit untuk glamping dan villa dengan suasana pedesaan autentik.</p>
+          <div class="map-distances">
+            <span class="map-dist-tag">🛣️ 12 km dari Tol Ciawi</span>
+            <span class="map-dist-tag">🍵 Kebun Teh Puncak</span>
+            <span class="map-dist-tag">🌡️ 18-22°C sepanjang hari</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area Cipanas -->
+      <div class="map-card reveal" style="transition-delay:.2s">
+        <div class="map-embed-wrap">
+          <!-- UNCOMMENT IFRAME INI setelah siap:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15900!2d107.0544!3d-6.7308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69b4!2sCipanas!5e0!3m2!1sen!2sid!4v1700000000002"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          -->
+          <div class="map-placeholder">
+            <span class="map-placeholder-icon">📍</span>
+            <span class="map-placeholder-text">Area Cipanas</span>
+            <a href="https://maps.google.com/?q=Cipanas+Cianjur+Jawa+Barat" target="_blank" rel="noopener noreferrer" style="margin-top:.75rem;font-size:.7rem;color:var(--gold);font-weight:600;text-decoration:none">Buka di Google Maps →</a>
+          </div>
+        </div>
+        <div class="map-info">
+          <div class="map-area">📍 Area Cipanas</div>
+          <p class="map-desc">Sisi timur Puncak yang lebih tenang. Dekat Kebun Raya Cibodas dan jalur pendakian Gunung Gede. Ideal untuk ekowisata.</p>
+          <div class="map-distances">
+            <span class="map-dist-tag">🌿 Dekat Kebun Raya Cibodas</span>
+            <span class="map-dist-tag">⛰️ Jalur Gunung Gede</span>
+            <span class="map-dist-tag">🏊 Villa kolam renang air panas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peta overview seluruh area Puncak -->
+    <div class="map-overview reveal">
+      <!-- UNCOMMENT IFRAME INI setelah siap deploy:
+      <iframe style="width:100%;height:100%;border:none;position:absolute;inset:0"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63425!2d106.9490!3d-6.7030!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69b3c7e1c9d4b1%3A0!2sPuncak%2C+Bogor+Regency%2C+West+Java!5e0!3m2!1sen!2sid!4v1700000000003"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      -->
+      <div class="map-embed-wrap">
+        <div class="map-placeholder" style="border-radius:0">
+          <span class="map-placeholder-icon">🗺️</span>
+          <span class="map-placeholder-text">Peta Seluruh Kawasan Puncak</span>
+          <p style="font-size:.7rem;color:var(--muted);margin-top:.4rem;text-align:center;padding:0 2rem">Cisarua · Megamendung · Puncak Pass · Cipanas</p>
+          <a href="https://maps.google.com/?q=Puncak+Bogor+Jawa+Barat" target="_blank" rel="noopener noreferrer" style="margin-top:.75rem;font-size:.75rem;color:var(--gold);font-weight:700;text-decoration:none;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);padding:.5rem 1.25rem;border-radius:8px">
+            🗺️ Buka Peta Lengkap di Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================================================
+     PLACEHOLDER SECTIONS - Siap diisi konten nyata
+     TODO: Implementasi konten lengkap di Batch setelah launch
+     ================================================== -->
+
+<!-- TENTANG KAMI -->
+<div class="gold-line"></div>
+<section id="tentang-kami" class="s-bg1">
+  <div class="section-inner" style="max-width:800px;text-align:center">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center;display:flex;margin-bottom:.75rem">Siapa Kami</span>
+      <h2 class="section-title" style="margin-bottom:1.5rem">Tentang <span class="gold-text">Puncak Gateway</span></h2>
+      <div style="width:60px;height:60px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.5rem">🏔️</div>
+      <p style="color:var(--muted);line-height:1.85;font-size:.95rem;margin-bottom:1rem">
+        Puncak Gateway adalah platform wisata digital yang menghubungkan wisatawan dengan pengalaman terbaik di kawasan Puncak, Bogor.
+        Kami hadir untuk memudahkan pencarian villa, aktivitas, dan paket wisata premium dengan layanan personal via WhatsApp.
+      </p>
+      <p style="color:var(--muted);line-height:1.85;font-size:.95rem;margin-bottom:1.5rem">
+        Dengan lebih dari 300+ pilihan properti dan aktivitas, kami berkomitmen untuk menjadi gerbang terbaik menuju pengalaman wisata Puncak yang tak terlupakan.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;text-align:left;margin-bottom:2rem">
+        <div style="padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:16px">
+          <span style="font-size:1.5rem">🎯</span>
+          <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:.6rem 0 .5rem">Visi Kami</h3>
+          <p style="font-size:.82rem;color:var(--muted);line-height:1.7">Menjadi gerbang digital nomor satu untuk wisata Puncak — tempat siapa pun bisa menemukan villa, aktivitas, dan pengalaman terbaik tanpa ribet.</p>
+        </div>
+        <div style="padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:16px">
+          <span style="font-size:1.5rem">🤝</span>
+          <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:.6rem 0 .5rem">Misi Kami</h3>
+          <p style="font-size:.82rem;color:var(--muted);line-height:1.7">Menghadirkan layanan pemesanan yang cepat, transparan, dan personal via WhatsApp — serta membuka peluang lebih luas bagi mitra villa dan penyedia aktivitas lokal di Puncak.</p>
+        </div>
+      </div>
+      <div class="c-img-wrap" style="height:260px;border-radius:16px;margin-bottom:1rem">
+        <div class="skeleton"></div>
+        <!-- TODO FOTO: Ganti placeholder ini dengan foto "Foto Tim Puncak Gateway" -- Spec: Foto tim/kantor, suasana kerja . 1200x800px . Landscape -->
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop" alt="Foto Tim Puncak Gateway" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1">
+      </div>
+      <a href="#wa-float" data-wa-msg="text=Halo%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20Puncak%20Gateway" class="btn-gold" style="padding:.9rem 2.5rem;border-radius:12px;font-size:.9rem;display:inline-flex">
+        <i class='bx bxl-whatsapp' style="font-size:1.1rem"></i> Hubungi Kami
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER VILLA -->
+<div class="gold-line"></div>
+<section id="partner" class="s-bg2">
+  <div class="section-inner" style="max-width:800px;text-align:center">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center;display:flex;margin-bottom:.75rem">Bergabung Bersama Kami</span>
+      <h2 class="section-title" style="margin-bottom:1.5rem">Daftarkan <span class="gold-text">Villa Anda</span></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin:2rem 0;text-align:left">
+        <div class="feat-item reveal"><span class="feat-icon">📈</span><div><h3 class="feat-title">Jangkauan Lebih Luas</h3><p class="feat-desc">Tampil di depan ribuan wisatawan yang mencari villa di Puncak setiap bulannya.</p></div></div>
+        <div class="feat-item reveal" style="transition-delay:.1s"><span class="feat-icon">💬</span><div><h3 class="feat-title">Reservasi via WhatsApp</h3><p class="feat-desc">Semua booking langsung masuk ke WhatsApp Anda. Mudah, familiar, tanpa aplikasi baru.</p></div></div>
+        <div class="feat-item reveal" style="transition-delay:.2s"><span class="feat-icon">🤝</span><div><h3 class="feat-title">Komisi Transparan</h3><p class="feat-desc">Sistem komisi jelas tanpa biaya tersembunyi. Anda kendalikan harga dan ketersediaan.</p></div></div>
+      </div>
+      <!-- TODO: Tambahkan form pendaftaran partner atau link ke halaman partner -->
+      <a href="#wa-float" data-wa-msg="text=Halo%2C%20saya%20ingin%20mendaftarkan%20villa%20saya%20di%20Puncak%20Gateway" class="btn-gold" style="padding:.9rem 2.5rem;border-radius:12px;font-size:.9rem;display:inline-flex">
+        <i class='bx bxl-whatsapp' style="font-size:1.1rem"></i> Daftar Jadi Partner
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG WISATA -->
+<div class="gold-line"></div>
+<section id="blog" class="s-bg1">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Tips & Inspirasi</span>
+        <h2 class="section-title">Blog <span class="gold-text">Wisata Puncak</span></h2>
+      </div>
+    </div>
+    <div class="cards-grid reveal">
+      <a href="pages/blog-itinerary-2d1n.html" class="c-card" style="text-decoration:none;color:inherit">
+        <div class="c-img-wrap" style="background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));display:flex;align-items:center;justify-content:center">
+          <span style="font-size:3rem">🗺️</span>
+        </div>
+        <div class="c-body">
+          <h3 class="c-name">Itinerary Puncak 2D1N</h3>
+          <p class="c-loc">Panduan wisata keluarga</p>
+          <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem;line-height:1.6">Rencana perjalanan lengkap 2 hari 1 malam di Puncak - dari villa, ATV, hingga kuliner terbaik.</p>
+        </div>
+      </a>
+      <a href="pages/blog-tips-pilih-villa.html" class="c-card" style="text-decoration:none;color:inherit">
+        <div class="c-img-wrap" style="background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));display:flex;align-items:center;justify-content:center">
+          <span style="font-size:3rem">🏡</span>
+        </div>
+        <div class="c-body">
+          <h3 class="c-name">Tips Memilih Villa Puncak</h3>
+          <p class="c-loc">Panduan untuk pemula</p>
+          <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem;line-height:1.6">Cara memilih villa yang tepat berdasarkan jumlah tamu, budget, fasilitas, dan lokasi di area Puncak.</p>
+        </div>
+      </a>
+      <a href="pages/blog-aktivitas-seru-puncak.html" class="c-card" style="text-decoration:none;color:inherit">
+        <div class="c-img-wrap" style="background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));display:flex;align-items:center;justify-content:center">
+          <span style="font-size:3rem">🏍️</span>
+        </div>
+        <div class="c-body">
+          <h3 class="c-name">5 Aktivitas Seru di Puncak</h3>
+          <p class="c-loc">Inspirasi aktivitas</p>
+          <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem;line-height:1.6">Rekomendasi aktivitas outdoor di Puncak Bogor mulai dari ATV, glamping, hingga jeep tour.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="gold-line"></div>
+<section id="faq" class="s-bg2">
+  <div class="section-inner" style="max-width:720px">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="eyebrow" style="justify-content:center;display:flex;margin-bottom:.75rem">Pertanyaan Umum</span>
+      <h2 class="section-title">FAQ - Pertanyaan yang<br>Sering <span class="gold-text">Ditanyakan</span></h2>
+    </div>
+    <div class="feat-list reveal">
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Bagaimana cara memesan villa di Puncak Gateway?</h3>
+        <p class="feat-desc">Pilih villa atau paket yang Anda inginkan, lalu klik tombol "Pesan" atau "Hubungi CS". Tim kami akan membalas via WhatsApp dalam waktu kurang dari 1 jam.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Apakah bisa booking di hari yang sama?</h3>
+        <p class="feat-desc">Ya, booking last-minute tersedia tergantung ketersediaan. Hubungi CS kami via WhatsApp untuk konfirmasi cepat dalam waktu kurang dari 1 jam.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Bagaimana kebijakan pembatalan?</h3>
+        <p class="feat-desc">Pembatalan lebih dari 48 jam sebelum check-in: pengembalian dana 100%. Pembatalan 24-48 jam sebelumnya: pengembalian 50%. Kurang dari 24 jam: tidak ada pengembalian dana.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Metode pembayaran apa yang diterima?</h3>
+        <p class="feat-desc">Transfer bank (BCA, Mandiri, BRI, BNI), GoPay, OVO, DANA, dan QRIS. Pembayaran dilakukan setelah CS mengkonfirmasi ketersediaan dan mengirimkan invoice.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Apakah ada minimum menginap?</h3>
+        <p class="feat-desc">Minimum 1 malam untuk villa dan glamping. Untuk weekend dan hari libur nasional, beberapa properti mensyaratkan minimum 2 malam. Paket ATV tidak ada minimum.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Apakah harga sudah termasuk sarapan dan fasilitas?</h3>
+        <p class="feat-desc">Setiap paket memiliki detail fasilitas yang berbeda. Informasi lengkap tentang inklusi (sarapan, BBQ area, kolam renang, dll) tertera di setiap listing properti.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Berapa minimum pemesanan untuk paket ATV?</h3>
+        <p class="feat-desc">Paket ATV bisa dipesan untuk minimum 1 orang. Untuk rombongan (10+ orang), tersedia harga khusus. Hubungi CS kami untuk penawaran group.</p>
+      </div>
+      <div class="feat-item" style="flex-direction:column;gap:.5rem">
+        <h3 class="feat-title" style="font-size:.95rem">Apakah Puncak Gateway melayani paket corporate?</h3>
+        <p class="feat-desc">Ya! Kami melayani gathering perusahaan, team building, dan outbound dengan harga khusus korporat. Hubungi CS kami untuk penawaran yang disesuaikan.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem" class="reveal">
+      <a href="#wa-float" data-wa-msg="text=Halo%2C%20saya%20ada%20pertanyaan%20tentang%20Puncak%20Gateway" class="btn-outline" style="padding:.9rem 2rem;border-radius:12px;font-size:.9rem;display:inline-flex">
+        <i class='bx bxl-whatsapp' style="font-size:1.1rem"></i> Ada Pertanyaan Lain? Chat CS
+      </a>
+    </div>
+
+    <!-- Terms & Privacy ringkas -->
+    <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)" class="reveal">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+        <div style="padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:16px">
+          <h3 style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.75rem">Syarat & Ketentuan</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem">
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Harga yang tertera adalah harga per malam kecuali disebutkan lain</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Booking dianggap sah setelah pembayaran uang muka diterima</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Check-in pukul 14.00, check-out pukul 12.00 WIB</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Tamu bertanggung jawab atas kerusakan properti selama menginap</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Dilarang membawa hewan peliharaan kecuali tertera di listing</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Puncak Gateway bertindak sebagai perantara antara tamu dan pemilik properti</li>
+          </ul>
+        </div>
+        <div style="padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:16px">
+          <h3 style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.75rem">Kebijakan Privasi</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem">
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Data pribadi Anda hanya digunakan untuk keperluan booking dan komunikasi</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Kami tidak menjual data Anda kepada pihak ketiga</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Nomor WhatsApp hanya digunakan untuk konfirmasi booking dan info promo</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Anda dapat meminta penghapusan data dengan menghubungi CS kami</li>
+            <li style="font-size:.78rem;color:var(--muted);display:flex;gap:.5rem"><span style="color:var(--gold);flex-shrink:0">•</span>Website menggunakan cookies untuk analitik dan peningkatan layanan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AVAILABILITY CALENDAR -->
+<div class="gold-line"></div>
+<section id="availability" class="s-bg2">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span> Cek Ketersediaan <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span></span>
+      <h2 class="section-title">Kalender Ketersediaan Villa</h2>
+      <p class="section-sub">Pilih tanggal check-in dan check-out untuk melihat villa yang tersedia</p>
+    </div>
+    <div class="reveal" style="max-width:680px;margin:0 auto">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;box-shadow:var(--shadow-card)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+          <div>
+            <label style="font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.5rem">Check-in</label>
+            <input type="date" id="cal-ci" class="cal-input" aria-label="Tanggal check-in">
+          </div>
+          <div>
+            <label style="font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.5rem">Check-out</label>
+            <input type="date" id="cal-co" class="cal-input" aria-label="Tanggal check-out">
+          </div>
+        </div>
+        <div style="margin-bottom:1.25rem">
+          <label style="font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.5rem">Tipe Properti</label>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="cal-type-pills">
+            <button class="filter-pill active" data-cal-type="semua">Semua</button>
+            <button class="filter-pill" data-cal-type="villa">Villa</button>
+            <button class="filter-pill" data-cal-type="glamping">Glamping</button>
+          </div>
+        </div>
+        <button class="btn-gold" id="cal-check-btn" style="width:100%;padding:.9rem;border-radius:12px;justify-content:center;font-size:.9rem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+          Cek Ketersediaan
+        </button>
+        <div id="cal-result" style="display:none;margin-top:1.25rem"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT VOUCHER -->
+<div class="gold-line"></div>
+<section id="voucher" class="s-bg1">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span> Gift Voucher <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span></span>
+      <h2 class="section-title">Hadiah yang Tak Terlupakan</h2>
+      <p class="section-sub">Berikan pengalaman menginap di Puncak sebagai hadiah — bisa dikustomisasi dan dikirim langsung ke penerima</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem" class="reveal">
+      <div class="voucher-card">
+        <div class="voucher-ribbon">Populer</div>
+        <div style="font-size:2rem;margin-bottom:.75rem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--gold)"><path d="M20 12v10H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">Villa 1 Malam</div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--text);margin-bottom:.5rem">Rp 750.000</div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem">Voucher menginap 1 malam di villa pilihan Puncak Gateway. Berlaku 6 bulan.</p>
+        <button class="btn-gold" style="width:100%;padding:.8rem;border-radius:10px;justify-content:center;font-size:.82rem" data-action="buy-voucher" data-voucher-type="Villa 1 Malam" data-voucher-value="Rp 750.000">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.4V5.2C21 4 20 3 18.8 3H5.2C4 3 3 4 3 5.2v3.2C3.9 8.7 4.5 9.5 4.5 10.5S3.9 12.3 3 12.6v3.2C3 17 4 18 5.2 18H18.8C20 18 21 17 21 15.8v-3.2c-.9-.3-1.5-1.1-1.5-2.1S20.1 8.7 21 8.4z"/></svg>
+          Beli Voucher
+        </button>
+      </div>
+      <div class="voucher-card">
+        <div style="font-size:2rem;margin-bottom:.75rem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--gold)"><path d="M20 12v10H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">Paket Weekend</div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--text);margin-bottom:.5rem">Rp 1.500.000</div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem">Voucher 2D1N lengkap dengan sarapan. Berlaku 6 bulan untuk semua villa premium.</p>
+        <button class="btn-gold" style="width:100%;padding:.8rem;border-radius:10px;justify-content:center;font-size:.82rem" data-action="buy-voucher" data-voucher-type="Paket Weekend 2D1N" data-voucher-value="Rp 1.500.000">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.4V5.2C21 4 20 3 18.8 3H5.2C4 3 3 4 3 5.2v3.2C3.9 8.7 4.5 9.5 4.5 10.5S3.9 12.3 3 12.6v3.2C3 17 4 18 5.2 18H18.8C20 18 21 17 21 15.8v-3.2c-.9-.3-1.5-1.1-1.5-2.1S20.1 8.7 21 8.4z"/></svg>
+          Beli Voucher
+        </button>
+      </div>
+      <div class="voucher-card">
+        <div style="font-size:2rem;margin-bottom:.75rem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--gold)"><path d="M20 12v10H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">Voucher Bebas</div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--text);margin-bottom:.5rem">Nominal Custom</div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem">Tentukan sendiri nilai voucher yang ingin diberikan — minimal Rp 500.000. Berlaku 6 bulan.</p>
+        <button class="btn-gold" style="width:100%;padding:.8rem;border-radius:10px;justify-content:center;font-size:.82rem" data-action="buy-voucher" data-voucher-type="Voucher Nominal Custom" data-voucher-value="Custom">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.4V5.2C21 4 20 3 18.8 3H5.2C4 3 3 4 3 5.2v3.2C3.9 8.7 4.5 9.5 4.5 10.5S3.9 12.3 3 12.6v3.2C3 17 4 18 5.2 18H18.8C20 18 21 17 21 15.8v-3.2c-.9-.3-1.5-1.1-1.5-2.1S20.1 8.7 21 8.4z"/></svg>
+          Pesan via WA
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFFILIATE / REFERRAL -->
+<div class="gold-line"></div>
+<section id="referral" class="s-bg2">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span> Program Referral <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span></span>
+      <h2 class="section-title">Ajak Teman, Dapat Komisi</h2>
+      <p class="section-sub">Dapatkan komisi Rp 100.000 untuk setiap booking yang berhasil melalui kode referral Anda</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:2rem" class="reveal">
+      <div class="feat-item"><span class="feat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </span><div><h3 class="feat-title">Daftar Gratis</h3><p class="feat-desc">Tidak ada biaya pendaftaran. Generate kode unik Anda dalam hitungan detik.</p></div></div>
+      <div class="feat-item"><span class="feat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>
+      </span><div><h3 class="feat-title">Share Kode Anda</h3><p class="feat-desc">Bagikan kode referral ke teman, keluarga, atau follower media sosial.</p></div></div>
+      <div class="feat-item"><span class="feat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold)"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+      </span><div><h3 class="feat-title">Komisi Langsung</h3><p class="feat-desc">Rp 100.000 per booking sukses. Transfer ke rekening pilihan Anda setiap minggu.</p></div></div>
+    </div>
+    <div class="reveal" style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;max-width:520px;margin:0 auto;text-align:center;box-shadow:var(--shadow-card)">
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem">Masukkan nama Anda untuk generate kode referral unik</p>
+      <div style="display:flex;gap:.75rem;margin-bottom:1rem">
+        <input type="text" id="ref-name" class="cal-input" placeholder="Nama Anda" style="flex:1">
+        <button class="btn-gold" id="ref-gen-btn" style="padding:.7rem 1.25rem;border-radius:10px;white-space:nowrap;font-size:.82rem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+          Generate
+        </button>
+      </div>
+      <div id="ref-result" style="display:none;padding:1.25rem;background:var(--bg);border:1px solid var(--border2);border-radius:12px">
+        <p style="font-size:.75rem;color:var(--muted);margin-bottom:.5rem">Kode Referral Anda</p>
+        <div style="display:flex;align-items:center;gap:.75rem;justify-content:center">
+          <span id="ref-code" style="font-size:1.4rem;font-weight:800;letter-spacing:.15em;color:var(--gold)"></span>
+          <button id="ref-copy-btn" style="background:transparent;border:1px solid var(--border);border-radius:8px;padding:.4rem .75rem;color:var(--muted);font-size:.75rem;cursor:pointer">Salin</button>
+        </div>
+        <a id="ref-share-btn" href="#wa-float" class="btn-gold" style="margin-top:1rem;padding:.75rem 1.5rem;border-radius:10px;justify-content:center;font-size:.82rem;display:inline-flex">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 0C5.366 0 0 5.373 0 11.998c0 2.117.554 4.1 1.523 5.819L.057 24l6.335-1.652C8.1 23.28 10.001 23.998 11.99 23.998c6.624 0 12.01-5.371 12.01-11.998C24 5.373 18.614 0 11.99 0z"/></svg>
+          Share via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW REQUEST AUTOMATION -->
+<div class="gold-line"></div>
+<section id="review-request" class="s-bg1">
+  <div class="section-inner" style="max-width:640px;margin:0 auto;text-align:center">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center"><span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span> Ulasan Tamu <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span></span>
+      <h2 class="section-title" style="margin:.75rem 0 .5rem">Ceritakan Pengalaman Anda</h2>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.75;margin-bottom:2rem">Ulasan Anda membantu ribuan tamu lain menemukan villa & aktivitas terbaik di Puncak. Tidak lebih dari 2 menit.</p>
+    </div>
+    <div class="reveal" style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;box-shadow:var(--shadow-card)">
+      <div style="margin-bottom:1.25rem">
+        <p style="font-size:.8rem;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem">Rating Keseluruhan</p>
+        <div id="rev-stars" style="display:flex;gap:.5rem;justify-content:center">
+          <button class="rev-star-btn" data-star="1" aria-label="Bintang 1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:var(--border)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+          <button class="rev-star-btn" data-star="2" aria-label="Bintang 2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:var(--border)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+          <button class="rev-star-btn" data-star="3" aria-label="Bintang 3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:var(--border)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+          <button class="rev-star-btn" data-star="4" aria-label="Bintang 4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:var(--border)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+          <button class="rev-star-btn" data-star="5" aria-label="Bintang 5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:var(--border)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem">
+        <input type="text" id="rev-nama" class="cal-input" placeholder="Nama Anda" style="margin-bottom:.75rem">
+        <input type="text" id="rev-villa" class="cal-input" placeholder="Villa / Aktivitas yang dipesan">
+      </div>
+      <textarea id="rev-text" class="cal-input" placeholder="Ceritakan pengalaman Anda (opsional)..." style="height:90px;resize:vertical;line-height:1.6"></textarea>
+      <button class="btn-gold" id="rev-submit-btn" style="width:100%;margin-top:1rem;padding:.9rem;border-radius:12px;justify-content:center;font-size:.9rem">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Kirim Ulasan via WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="gold-line"></div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo-main" style="font-family:'Playfair Display',serif;font-size:1.1rem">PUNCAK GATEWAY</div>
+      <div class="logo-sub" style="font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.1rem">Gerbang Utama Wisata Puncak</div>
+      <p class="footer-desc">Platform wisata terpercaya untuk menemukan villa, aktivitas, dan pengalaman terbaik di Puncak, Bogor.</p>
+      <div class="social-row">
+        <a href="#" class="soc-btn" data-social="instagram" aria-label="Instagram Puncak Gateway"><i class='bx bxl-instagram'></i></a>
+        <a href="#" class="soc-btn" data-social="tiktok" aria-label="TikTok Puncak Gateway"><i class='bx bxl-tiktok'></i></a>
+        <a data-wa-msg="" href="#wa-float" class="soc-btn"><i class='bx bxl-whatsapp'></i></a>
+      </div>
+    </div>
+    <div><div class="footer-col-title">Layanan</div><ul class="footer-links"><li><a href="#villa">Villa</a></li><li><a href="#atv">ATV</a></li><li><a href="#glamping">Glamping</a></li><li><a href="#aktivitas">Outbound</a></li><li><a href="#aktivitas">Jeep Tour</a></li><li><a href="pages/corporate.html">Corporate &amp; MICE</a></li></ul></div>
+    <div><div class="footer-col-title">Informasi</div><ul class="footer-links"><li><a href="#tentang-kami">Tentang Kami</a></li><li><a href="#partner">Partner Villa</a></li><li><a href="#promo">Promo</a></li><li><a href="#blog">Blog Wisata</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><div class="footer-col-title">Kontak</div><ul class="footer-links"><li><a data-wa-msg="" href="#wa-float"><i class='bx bxl-whatsapp' style="color:var(--gold)"></i>WhatsApp CS</a></li><li><a data-wa-msg="text=Halo%2C%20saya%20ingin%20menghubungi%20Puncak%20Gateway%20via%20email" href="#wa-float"><i class='bx bx-envelope' style="color:var(--gold)"></i>Email Kami</a></li><li><a href="https://maps.google.com/?q=Puncak+Bogor+Jawa+Barat" target="_blank" rel="noopener noreferrer"><i class='bx bx-map-pin' style="color:var(--gold)"></i>Puncak, Bogor</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© <span id="footer-year">2024</span> Puncak Gateway. All rights reserved.</p>
+    <p class="footer-copy">Made with ♥ untuk wisatawan Indonesia</p>
+  </div>
+</footer>
+</body>
+<script>
+// ==============================================
+// KONFIGURASI -- Ganti nilai di bawah ini sebelum deploy
+// ==============================================
+var WA_NUMBER = '6281234567890'; // TODO: Ganti dengan nomor WA CS aktif (format: 62xxxxxxxxxxx)
+var WA_DEFAULT_MSG = encodeURIComponent('Halo, saya tertarik dengan layanan Puncak Gateway. Bisa info lebih lanjut?');
+
+// -- THEME
+var root = document.documentElement;
+var THEME_KEY = 'pg_theme';
+var savedTheme = localStorage.getItem(THEME_KEY);
+var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+var dark = savedTheme ? savedTheme === 'dark' : systemDark;
+
+function applyTheme() {
+  root.setAttribute('data-theme', dark ? 'dark' : 'light');
+  localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+  var btn  = document.getElementById('theme-btn');
+  var icon = document.getElementById('theme-icon');
+  if (!btn) return;
+  // Ganti class icon saja -- tidak pakai innerHTML agar tidak confuse parser
+  if (icon) {
+    icon.className = dark ? 'bx bx-sun' : 'bx bx-moon';
+  }
+  btn.setAttribute('aria-label', dark ? 'Aktifkan light mode' : 'Aktifkan dark mode');
+}
+applyTheme();
+
+var _themeBtn = document.getElementById('theme-btn');
+if (_themeBtn) {
+  _themeBtn.addEventListener('click', function() {
+    dark = !dark;
+    applyTheme();
+  });
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+  if (!localStorage.getItem(THEME_KEY)) {
+    dark = e.matches;
+    applyTheme();
+  }
+});
+
+// -- NAVBAR
+var nav = document.getElementById('navbar');
+window.addEventListener('scroll', function() {
+  if (!nav) return;
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  var hero = document.getElementById('hero');
+  var bar  = document.getElementById('book-bar');
+  if (hero && bar) {
+    if (window.scrollY > hero.offsetHeight * 0.7) bar.classList.add('visible');
+    else bar.classList.remove('visible');
+  }
+  // Nav active
+  var _secs = document.querySelectorAll('section[id]');
+  var _navLinks = document.querySelectorAll('.nav-link');
+  for (var _ni = 0; _ni < _secs.length; _ni++) {
+    if (window.scrollY >= _secs[_ni].offsetTop - 120) {
+      for (var _nj = 0; _nj < _navLinks.length; _nj++) { _navLinks[_nj].classList.remove('active'); }
+      var _activeLink = document.querySelector('.nav-link[href="#' + _secs[_ni].id + '"]');
+      if (_activeLink) _activeLink.classList.add('active');
+    }
+  }
+});
+
+// -- SHOW CORRECT BOOKING BAR
+function showBook() {
+  var w = window.innerWidth;
+  var desk = document.getElementById('book-desk');
+  var mob  = document.getElementById('book-mob');
+  if (desk) desk.style.display = w >= 768 ? 'flex' : 'none';
+  if (mob)  mob.style.display  = w < 768  ? 'block' : 'none';
+}
+showBook();
+window.addEventListener('resize', showBook);
+
+// -- MOBILE MENU
+var menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  var mobMenu  = document.getElementById('mob-menu');
+  var mobOvl   = document.getElementById('mob-overlay');
+  var hb1 = document.getElementById('hb1');
+  var hb2 = document.getElementById('hb2');
+  var hb3 = document.getElementById('hb3');
+  if (mobMenu) { if (menuOpen) mobMenu.classList.add('open'); else mobMenu.classList.remove('open'); }
+  if (mobOvl)  { if (menuOpen) mobOvl.classList.add('show'); else mobOvl.classList.remove('show'); }
+  if (hb2) hb2.style.opacity   = menuOpen ? '0' : '1';
+  if (hb1) hb1.style.transform = menuOpen ? 'rotate(45deg) translate(5px,5px)' : '';
+  if (hb3) hb3.style.transform = menuOpen ? 'rotate(-45deg) translate(5px,-5px)' : '';
+}
+function closeMenu() { menuOpen = true; toggleMenu(); }
+
+// -- BOOKING
+var bookCat = 'Villa';
+function setBookTab(el, cat) {
+  bookCat = cat;
+  var parent = el.parentNode;
+  var tabs = parent.querySelectorAll('.book-tab');
+  tabs.forEach(function(b) { b.classList.remove('active'); });
+  el.classList.add('active');
+}
+var bookExpanded = false;
+function toggleBookExpand() {
+  bookExpanded = !bookExpanded;
+  var exp = document.getElementById('book-exp');
+  if (exp) { if (bookExpanded) exp.classList.add('show'); else exp.classList.remove('show'); }
+}
+function doBook() {
+  var isMobile = window.innerWidth < 768;
+  var ciEl = isMobile ? document.getElementById('mob-ci') : document.getElementById('ci');
+  var coEl = isMobile ? document.getElementById('mob-co') : document.getElementById('co');
+  var gtEl = isMobile ? document.getElementById('mob-gt') : document.getElementById('gt');
+  var ci = ciEl ? ciEl.value || '-' : '-';
+  var co = coEl ? coEl.value || '-' : '-';
+  var gt = gtEl ? gtEl.value || '-' : '-';
+  var msg = encodeURIComponent(
+    'Halo, saya ingin reservasi *' + bookCat + '* di Puncak Gateway.\n' +
+    'Check-in: ' + ci + '\n' +
+    'Check-out: ' + co + '\n' +
+    'Tamu: ' + gt + '\n\n' +
+    'Mohon info ketersediaan dan harga terbaiknya.'
+  );
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + msg, '_blank');
+}
+function waBook(item) {
+  var msg = encodeURIComponent('Halo, saya tertarik memesan *' + item + '* di Puncak Gateway. Bisa tolong info ketersediaan dan harga terbaik?');
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + msg, '_blank');
+}
+
+// -- SCROLL REVEAL
+var _reveals = document.querySelectorAll('.reveal');
+if (typeof IntersectionObserver === 'undefined') {
+  for (var _ri = 0; _ri < _reveals.length; _ri++) {
+    _reveals[_ri].classList.add('visible');
+  }
+} else {
+  var ro = new IntersectionObserver(function(entries) {
+    for (var _ei = 0; _ei < entries.length; _ei++) {
+      if (entries[_ei].isIntersecting) {
+        entries[_ei].target.classList.add('visible');
+        ro.unobserve(entries[_ei].target);
+      }
+    }
+  }, { threshold: 0.1 });
+  for (var _ri2 = 0; _ri2 < _reveals.length; _ri2++) {
+    ro.observe(_reveals[_ri2]);
+  }
+}
+
+// -- COUNTER ANIMATION
+var counterDone = false;
+function runCounters() {
+  if (counterDone) return;
+  counterDone = true;
+  var _stats = document.querySelectorAll('.stat-num[data-target]');
+  for (var _si = 0; _si < _stats.length; _si++) { (function(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var step   = Math.ceil(target / 60);
+    var cur    = 0;
+    var timer  = setInterval(function() {
+      cur = Math.min(cur + step, target);
+      el.textContent = cur + '+';
+      if (cur >= target) clearInterval(timer);
+    }, 30);
+  }(_stats[_si])); }
+}
+window.addEventListener('scroll', function() {
+  var stats = document.getElementById('stats');
+  if (stats && window.scrollY > stats.offsetTop - window.innerHeight * 0.8) runCounters();
+});
+
+// -- TESTIMONIAL SLIDER (CSS Scroll Snap)
+// Menggunakan native scroll-snap -- tidak ada pixel calculation
+// Lebih smooth, touch-native, zero layout shift
+function tesiScroll(dir) {
+  var vp = document.getElementById('t-track');
+  if (!vp) return;
+  // Ukuran scroll = lebar card pertama + gap
+  var card = vp.children[0];
+  var gap  = 20;
+  var w    = card ? card.offsetWidth + gap : 300;
+  vp.scrollBy({ left: dir * w, behavior: 'smooth' });
+}
+function tPrev() { tesiScroll(-1); }
+function tNext() { tesiScroll(1); }
+
+// -- COUNTDOWN
+(function() {
+  var STORAGE_KEY = 'pg_promo_deadline';
+  var stored = localStorage.getItem(STORAGE_KEY);
+  var end;
+  if (stored) {
+    end = new Date(stored);
+  } else {
+    end = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    localStorage.setItem(STORAGE_KEY, end.toISOString());
+  }
+  function pad(n) {
+    var s = String(Math.floor(n));
+    return s.length < 2 ? '0' + s : s;
+  }
+  function tick() {
+    var d = end - Date.now();
+    if (d <= 0) {
+      end = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+      localStorage.setItem(STORAGE_KEY, end.toISOString());
+      d = end - Date.now();
+    }
+    var cdD = document.getElementById('cd-d');
+    var cdH = document.getElementById('cd-h');
+    var cdM = document.getElementById('cd-m');
+    var cdS = document.getElementById('cd-s');
+    if (cdD) cdD.textContent = pad(d / 86400000);
+    if (cdH) cdH.textContent = pad((d % 86400000) / 3600000);
+    if (cdM) cdM.textContent = pad((d % 3600000) / 60000);
+    if (cdS) cdS.textContent = pad((d % 60000) / 1000);
+  }
+  tick();
+  setInterval(tick, 1000);
+}());
+
+// -- EXIT INTENT POPUP
+(function() {
+  var POPUP_KEY = 'pg_exit_shown';
+  var COOLDOWN  = 3 * 24 * 60 * 60 * 1000;
+  var triggered = false;
+
+  // -- KONTEKS PER SECTION (integrasi lebih dalam: pesan WA & copy popup
+  //    menyesuaikan section yang sedang dilihat user saat exit-intent terjadi)
+  var CONTEXT = {
+    atv: {
+      title: 'Tunggu - Promo Paket ATV!',
+      subPre: 'Tinggalkan nomor WhatsApp Anda dan dapatkan ',
+      subStrong: 'harga spesial paket ATV',
+      subPost: ' yang tidak dipublikasikan.',
+      msg: 'Halo Puncak Gateway! Saya tertarik dengan promo paket ATV.\nBoleh saya tahu penawaran terbaik yang tersedia?'
+    },
+    glamping: {
+      title: 'Tunggu - Promo Glamping!',
+      subPre: 'Tinggalkan nomor WhatsApp Anda dan dapatkan ',
+      subStrong: 'penawaran eksklusif glamping',
+      subPost: ' yang tidak dipublikasikan.',
+      msg: 'Halo Puncak Gateway! Saya tertarik dengan promo glamping.\nBoleh saya tahu penawaran terbaik yang tersedia?'
+    },
+    villa: {
+      title: 'Tunggu - Ada Promo Spesial!',
+      subPre: 'Tinggalkan nomor WhatsApp Anda dan dapatkan ',
+      subStrong: 'penawaran eksklusif',
+      subPost: ' villa Puncak yang tidak dipublikasikan.',
+      msg: 'Halo Puncak Gateway! Saya tertarik dengan promo eksklusif villa Puncak.\nBoleh saya tahu penawaran terbaik yang tersedia?'
+    },
+    default: {
+      title: 'Tunggu - Ada Promo Spesial!',
+      subPre: 'Tinggalkan nomor WhatsApp Anda dan dapatkan ',
+      subStrong: 'penawaran eksklusif',
+      subPost: ' villa Puncak yang tidak dipublikasikan.',
+      msg: 'Halo Puncak Gateway! Saya tertarik dengan promo eksklusif villa Puncak.\nBoleh saya tahu penawaran terbaik yang tersedia?'
+    }
+  };
+  var currentContext = 'default';
+
+  function detectSection() {
+    var ids = ['atv', 'glamping', 'villa'];
+    var best = 'default';
+    for (var i = 0; i < ids.length; i++) {
+      var sec = document.getElementById(ids[i]);
+      if (sec && window.scrollY >= sec.offsetTop - 200) best = ids[i];
+    }
+    return best;
+  }
+
+  function applyContext(ctxKey) {
+    var ctx = CONTEXT[ctxKey] || CONTEXT.default;
+    var titleEl = document.getElementById('exit-title');
+    var subEl = document.querySelector('#exit-popup .exit-sub');
+    if (titleEl) titleEl.textContent = ctx.title;
+    if (subEl) {
+      // Bangun konten via DOM node, bukan innerHTML string, agar tidak ada
+      // pattern tag literal di dalam JS (sesuai aturan ES5/parser-safety).
+      while (subEl.firstChild) { subEl.removeChild(subEl.firstChild); }
+      subEl.appendChild(document.createTextNode(ctx.subPre));
+      var strongEl = document.createElement('strong');
+      strongEl.style.color = 'var(--gold)';
+      strongEl.textContent = ctx.subStrong;
+      subEl.appendChild(strongEl);
+      subEl.appendChild(document.createTextNode(ctx.subPost));
+    }
+  }
+
+  function shouldShow() {
+    var last = localStorage.getItem(POPUP_KEY);
+    if (!last) return true;
+    return (Date.now() - parseInt(last, 10)) > COOLDOWN;
+  }
+  function showExitPopup() {
+    if (triggered || !shouldShow()) return;
+    triggered = true;
+    currentContext = detectSection();
+    applyContext(currentContext);
+    var popup = document.getElementById('exit-popup');
+    if (popup) popup.classList.add('show');
+    setTimeout(function() {
+      var input = document.getElementById('exit-wa');
+      if (input) input.focus();
+    }, 450);
+  }
+
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY < 0) showExitPopup();
+  });
+
+  var mobileTimer = null;
+  var scrolled = false;
+  (function() {
+    var _opt = false;
+    try { var _t = Object.defineProperty({}, 'passive', { get: function() { _opt = { passive: true }; } }); window.addEventListener('test', null, _t); } catch(e) {}
+    window.addEventListener('scroll', function() {
+      if (scrolled || window.innerWidth >= 768) return;
+      scrolled = true;
+      mobileTimer = setTimeout(showExitPopup, 45000);
+    }, _opt);
+  }());
+
+  // Keyboard Escape untuk tutup popup
+  document.addEventListener('keydown', function(e) {
+    var key = e.key || e.keyCode;
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      var popup = document.getElementById('exit-popup');
+      if (popup && popup.classList.contains('show')) window.closeExitPopup();
+    }
+  });
+
+  window.closeExitPopup = function() {
+    var popup = document.getElementById('exit-popup');
+    if (popup) popup.classList.remove('show');
+    localStorage.setItem(POPUP_KEY, Date.now().toString());
+    triggered = true;
+    if (mobileTimer) clearTimeout(mobileTimer);
+  };
+
+  window.submitExitPopup = function() {
+    var input = document.getElementById('exit-wa');
+    if (!input) return;
+    var waInput = input.value.trim();
+    if (!waInput || waInput.replace(/[^0-9]/g, '').length < 9) {
+      input.focus();
+      input.style.borderColor = 'rgba(229,57,53,.6)';
+      setTimeout(function() { input.style.borderColor = ''; }, 1500);
+      return;
+    }
+    var cleaned = waInput.replace(/[^0-9]/g, '');
+    if (cleaned.charAt(0) === '0') cleaned = '62' + cleaned.slice(1);
+    if (cleaned.slice(0, 2) !== '62') cleaned = '62' + cleaned;
+    var ctx = CONTEXT[currentContext] || CONTEXT.default;
+    var msg = encodeURIComponent(ctx.msg);
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + msg, '_blank');
+    localStorage.setItem(POPUP_KEY, Date.now().toString());
+    localStorage.setItem('pg_lead_wa', cleaned);
+    window.closeExitPopup();
+  };
+}());
+
+// -- WA LINK RESOLVER
+// Script ada di akhir body -- DOM sudah fully parsed saat ini dijalankan.
+(function resolveWaLinks() {
+  var _waEls = document.querySelectorAll('[data-wa-msg]');
+  for (var _wi = 0; _wi < _waEls.length; _wi++) {
+    var _el = _waEls[_wi];
+    var msg = _el.getAttribute('data-wa-msg');
+    var url = 'https://wa.me/' + WA_NUMBER;
+    if (msg) url += '?' + msg;
+    _el.setAttribute('href', url);
+    if (!_el.getAttribute('target')) _el.setAttribute('target', '_blank');
+    if (!_el.getAttribute('rel'))    _el.setAttribute('rel', 'noopener noreferrer');
+  }
+}());
+
+// -- EVENT DELEGATION (menggantikan semua inline onclick)
+document.addEventListener('click', function(e) {
+  var el = e.target;
+  // Cari elemen terdekat dengan data-action (termasuk parent)
+  while (el && el !== document) {
+    if (el.getAttribute && el.getAttribute('data-action')) break;
+    el = el.parentNode;
+  }
+  if (!el || el === document) return;
+  var action = el.getAttribute('data-action');
+  switch (action) {
+    case 'close-exit':    window.closeExitPopup(); break;
+    case 'submit-exit':   window.submitExitPopup(); break;
+    case 'toggle-menu':   toggleMenu(); break;
+    case 'close-menu':    closeMenu(); break;
+    case 'set-tab':       setBookTab(el, el.getAttribute('data-tab')); break;
+    case 'do-book':       doBook(); break;
+    case 'toggle-expand': toggleBookExpand(); break;
+    case 'wa-book':
+      var prop = el.getAttribute('data-property');
+      if (prop) waBook(prop);
+      break;
+    case 'buy-voucher':
+      var vType = el.getAttribute('data-voucher-type') || 'Voucher';
+      var vVal  = el.getAttribute('data-voucher-value') || '';
+      var vMsg  = 'Halo Puncak Gateway! Saya ingin membeli *' + vType + '* (Nilai: ' + vVal + ').\nMohon info cara pembelian dan pengirimannya.';
+      window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(vMsg), '_blank');
+      break;
+    case 'testi-prev': tPrev(); break;
+    case 'testi-next': tNext(); break;
+  }
+});
+
+// -- VILLA SEARCH + FILTER
+(function villaSearchFilter() {
+  var searchInput = document.getElementById('villa-search');
+  var pills = document.querySelectorAll('#villa-filter-pills .filter-pill');
+  var grid = document.getElementById('villa-grid');
+  var noResult = document.getElementById('villa-no-result');
+  if (!grid) return;
+  var cards = grid.querySelectorAll('.c-card');
+  var activeLoc = 'all';
+
+  function applyFilter() {
+    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    var visibleCount = 0;
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var search = card.getAttribute('data-search') || '';
+      var loc = card.getAttribute('data-loc') || '';
+      var matchLoc = (activeLoc === 'all') || (loc === activeLoc);
+      var matchQuery = (query === '') || (search.indexOf(query) !== -1);
+      if (matchLoc && matchQuery) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    }
+    if (noResult) noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', applyFilter);
+  }
+  for (var p = 0; p < pills.length; p++) {
+    pills[p].addEventListener('click', function() {
+      for (var q = 0; q < pills.length; q++) { pills[q].classList.remove('active'); }
+      this.classList.add('active');
+      activeLoc = this.getAttribute('data-filter-loc');
+      applyFilter();
+    });
+  }
+}());
+
+// -- COPYRIGHT YEAR (auto-update)
+var yearEl = document.getElementById('footer-year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// -- AVAILABILITY CALENDAR
+(function initCalendar() {
+  var ciInput = document.getElementById('cal-ci');
+  var coInput = document.getElementById('cal-co');
+  var calBtn  = document.getElementById('cal-check-btn');
+  var calRes  = document.getElementById('cal-result');
+  var typePills = document.querySelectorAll('[data-cal-type]');
+  var activeType = 'semua';
+  var today = new Date();
+  var todayStr = today.toISOString().slice(0, 10);
+  if (ciInput) ciInput.min = todayStr;
+  if (coInput) coInput.min = todayStr;
+  if (ciInput) {
+    ciInput.addEventListener('change', function() {
+      if (coInput && coInput.value && coInput.value <= ciInput.value) {
+        var d = new Date(ciInput.value);
+        d.setDate(d.getDate() + 1);
+        coInput.value = d.toISOString().slice(0, 10);
+      }
+      if (coInput) coInput.min = ciInput.value;
+    });
+  }
+  for (var pt = 0; pt < typePills.length; pt++) {
+    typePills[pt].addEventListener('click', function() {
+      for (var q = 0; q < typePills.length; q++) typePills[q].classList.remove('active');
+      this.classList.add('active');
+      activeType = this.getAttribute('data-cal-type');
+    });
+  }
+  var PROPERTIES = [
+    {name:'Villa Alana',type:'villa',loc:'Cisarua',avail:true},
+    {name:'Villa White House',type:'villa',loc:'Megamendung',avail:true},
+    {name:'Villa Mountain View',type:'villa',loc:'Cisarua',avail:false},
+    {name:'Villa Keluarga Bahagia',type:'villa',loc:'Cipanas',avail:true},
+    {name:'Glamping Kebun Teh',type:'glamping',loc:'Puncak',avail:true},
+    {name:'Glamping Pinus',type:'glamping',loc:'Cisarua',avail:false}
+  ];
+  function buildResultHTML(props) {
+    var container = document.createElement('div');
+    if (!props.length) {
+      var msg = document.createElement('p');
+      msg.style.cssText = 'text-align:center;color:var(--muted);font-size:.85rem;padding:.5rem 0';
+      msg.textContent = 'Tidak ada properti tersedia untuk filter yang dipilih.';
+      container.appendChild(msg);
+      return container;
+    }
+    var label = document.createElement('p');
+    label.style.cssText = 'font-size:.75rem;color:var(--muted);margin-bottom:.75rem';
+    label.textContent = 'Hasil untuk tanggal yang dipilih:';
+    container.appendChild(label);
+    for (var i = 0; i < props.length; i++) {
+      var p = props[i];
+      var row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid var(--border)';
+      var infoDiv = document.createElement('div');
+      var nameEl = document.createElement('p');
+      nameEl.style.cssText = 'font-size:.85rem;font-weight:600;color:var(--text)';
+      nameEl.textContent = p.name;
+      var locEl = document.createElement('p');
+      locEl.style.cssText = 'font-size:.75rem;color:var(--muted)';
+      locEl.textContent = p.loc + ' - ' + p.type;
+      infoDiv.appendChild(nameEl);
+      infoDiv.appendChild(locEl);
+      var statusDiv = document.createElement('div');
+      statusDiv.style.cssText = 'display:flex;align-items:center;font-size:.78rem;font-weight:600;color:' + (p.avail ? '#4caf50' : '#e74c3c');
+      var dot = document.createElement('span');
+      dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:' + (p.avail ? '#4caf50' : '#e74c3c') + ';display:inline-block;margin-right:.4rem';
+      statusDiv.appendChild(dot);
+      statusDiv.appendChild(document.createTextNode(p.avail ? 'Tersedia' : 'Penuh'));
+      row.appendChild(infoDiv);
+      row.appendChild(statusDiv);
+      container.appendChild(row);
+    }
+    return container;
+  }
+  if (calBtn) {
+    calBtn.addEventListener('click', function() {
+      if (!ciInput || !ciInput.value || !coInput || !coInput.value) {
+        if (calRes) {
+          calRes.style.display = 'block';
+          while (calRes.firstChild) calRes.removeChild(calRes.firstChild);
+          var errMsg = document.createElement('p');
+          errMsg.style.cssText = 'color:#e74c3c;font-size:.85rem;text-align:center';
+          errMsg.textContent = 'Pilih tanggal check-in dan check-out terlebih dahulu.';
+          calRes.appendChild(errMsg);
+        }
+        return;
+      }
+      var filtered = [];
+      for (var j = 0; j < PROPERTIES.length; j++) {
+        if (activeType === 'semua' || PROPERTIES[j].type === activeType) filtered.push(PROPERTIES[j]);
+      }
+      if (calRes) {
+        calRes.style.display = 'block';
+        while (calRes.firstChild) calRes.removeChild(calRes.firstChild);
+        calRes.appendChild(buildResultHTML(filtered));
+      }
+    });
+  }
+}());
+
+// -- REFERRAL CODE GENERATOR
+(function initReferral() {
+  var nameInput = document.getElementById('ref-name');
+  var genBtn    = document.getElementById('ref-gen-btn');
+  var refResult = document.getElementById('ref-result');
+  var refCode   = document.getElementById('ref-code');
+  var copyBtn   = document.getElementById('ref-copy-btn');
+  var shareBtn  = document.getElementById('ref-share-btn');
+  function generateCode(name) {
+    var prefix = name.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 4);
+    if (!prefix) prefix = 'PG';
+    var rand = Math.floor(1000 + Math.random() * 9000).toString();
+    return 'PG-' + prefix + rand;
+  }
+  if (genBtn) {
+    genBtn.addEventListener('click', function() {
+      var name = nameInput ? nameInput.value.trim() : '';
+      if (!name) { if (nameInput) nameInput.focus(); return; }
+      var code = generateCode(name);
+      if (refCode) refCode.textContent = code;
+      if (refResult) refResult.style.display = 'block';
+      if (shareBtn) {
+        var msg = encodeURIComponent('Halo! Gunakan kode referral saya *' + code + '* saat booking di Puncak Gateway dan dapatkan diskon spesial. Cek di: https://puncakgateway.com');
+        shareBtn.setAttribute('href', 'https://wa.me/?text=' + msg);
+        shareBtn.setAttribute('target', '_blank');
+        shareBtn.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  }
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var code = refCode ? refCode.textContent : '';
+      if (!code) return;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(function() {
+          copyBtn.textContent = 'Disalin!';
+          setTimeout(function() { copyBtn.textContent = 'Salin'; }, 2000);
+        });
+      } else {
+        copyBtn.textContent = 'Disalin!';
+        setTimeout(function() { copyBtn.textContent = 'Salin'; }, 2000);
+      }
+    });
+  }
+}());
+
+// -- REVIEW STARS
+(function initReviewStars() {
+  var starBtns = document.querySelectorAll('.rev-star-btn');
+  var selectedStar = 0;
+  function highlightStars(n) {
+    for (var i = 0; i < starBtns.length; i++) {
+      var svg = starBtns[i].querySelector('svg');
+      if (svg) svg.style.color = (i < n) ? 'var(--gold)' : 'var(--border)';
+    }
+  }
+  for (var s = 0; s < starBtns.length; s++) {
+    starBtns[s].addEventListener('mouseenter', function() {
+      highlightStars(parseInt(this.getAttribute('data-star'), 10));
+    });
+    starBtns[s].addEventListener('mouseleave', function() {
+      highlightStars(selectedStar);
+    });
+    starBtns[s].addEventListener('click', function() {
+      selectedStar = parseInt(this.getAttribute('data-star'), 10);
+      highlightStars(selectedStar);
+    });
+  }
+  var revSubmit = document.getElementById('rev-submit-btn');
+  if (revSubmit) {
+    revSubmit.addEventListener('click', function() {
+      var nama = document.getElementById('rev-nama') ? document.getElementById('rev-nama').value.trim() : '';
+      var villa = document.getElementById('rev-villa') ? document.getElementById('rev-villa').value.trim() : '';
+      var text = document.getElementById('rev-text') ? document.getElementById('rev-text').value.trim() : '';
+      if (!nama || !villa || !selectedStar) {
+        alert('Mohon isi nama, properti, dan pilih rating bintang terlebih dahulu.');
+        return;
+      }
+      var stars = '';
+      for (var k = 0; k < selectedStar; k++) stars += '*';
+      var msg = 'Halo Puncak Gateway, saya ingin mengirimkan ulasan:\n\n' +
+        'Nama: ' + nama + '\n' +
+        'Properti: ' + villa + '\n' +
+        'Rating: ' + stars + ' (' + selectedStar + '/5)\n' +
+        (text ? 'Ulasan: ' + text : '');
+      var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    });
+  }
+}());
+</script>
+</body>
+</html>
